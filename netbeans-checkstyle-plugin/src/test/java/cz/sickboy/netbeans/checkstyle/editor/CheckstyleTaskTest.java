@@ -28,13 +28,13 @@ import org.openide.filesystems.FileUtil;
  */
 public class CheckstyleTaskTest extends TestCase {
 
-    public CheckstyleTaskTest(String name) {
+    public CheckstyleTaskTest (String name) {
         super(name);
     }
 
-    public void testCancel() throws Exception {
+    public void testCancel () throws Exception {
         CheckstyleTask task = new CheckstyleTask(FileUtil.toFileObject(
-                FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
+            FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
 
         assertFalse(task.isCanceled());
         task.cancel();

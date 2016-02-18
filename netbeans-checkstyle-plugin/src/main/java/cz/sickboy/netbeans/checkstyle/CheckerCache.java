@@ -41,7 +41,15 @@ public final class CheckerCache {
 
     private boolean inUse;
 
-    public Checker acquireChecker(FileObject fileObject, Configuration configuration) throws CheckstyleException {
+    /**
+     * Get a checker for the file and requested configuration.
+     *
+     * @param fileObject The file to check
+     * @param configuration The configuration to use when checking.
+     * @return The checker
+     * @throws CheckstyleException If checkstyle configuration fails.
+     */
+    public Checker acquireChecker (FileObject fileObject, Configuration configuration) throws CheckstyleException {
         ClassLoader classLoader = null;
         ClassPath path = ClassPath.getClassPath(fileObject, ClassPath.EXECUTE);
         if (path != null) {
@@ -49,8 +57,9 @@ public final class CheckerCache {
         }
 
         synchronized (this) {
-            if ((lastClassLoader == classLoader || (lastClassLoader != null && lastClassLoader.equals(classLoader)))
-                    && configuration.equals(lastConfiguration) && !inUse) {
+            if ((lastClassLoader == classLoader || (lastClassLoader != null && lastClassLoader.equals(classLoader))) &&
+                configuration.equals(lastConfiguration) && !inUse)
+            {
                 if (LOGGER.isLoggable(Level.FINE)) {
                     LOGGER.log(Level.FINE, "Cache hit for {0}", fileObject.getNameExt());
                 }
@@ -79,7 +88,7 @@ public final class CheckerCache {
         return freshChecker;
     }
 
-    public void releaseChecker(Checker checker) {
+    public void releaseChecker (Checker checker) {
         synchronized (this) {
             if (checker.equals(lastChecker)) {
                 inUse = false;
@@ -89,15 +98,15 @@ public final class CheckerCache {
         }
     }
 
-    public void clear() {
+    public void clear () {
         Checker current;
         synchronized (this) {
-           current = lastChecker;
+            current = lastChecker;
 
-           lastConfiguration = null;
-           lastClassLoader = null;
-           lastChecker = null;
-           inUse = false;
+            lastConfiguration = null;
+            lastClassLoader = null;
+            lastChecker = null;
+            inUse = false;
         }
         if (current != null) {
             current.destroy();

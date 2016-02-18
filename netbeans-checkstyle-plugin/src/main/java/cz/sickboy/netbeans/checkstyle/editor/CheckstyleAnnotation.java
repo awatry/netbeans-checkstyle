@@ -38,8 +38,9 @@ public final class CheckstyleAnnotation extends Annotation {
 
     private final SeverityLevel level;
 
-    public CheckstyleAnnotation(StyledDocument document, Position position,
-            String shortDescription, SeverityLevel level) {
+    public CheckstyleAnnotation (StyledDocument document, Position position,
+        String shortDescription, SeverityLevel level)
+    {
 
         this.document = document;
         this.position = position;
@@ -47,19 +48,21 @@ public final class CheckstyleAnnotation extends Annotation {
         this.level = level;
     }
 
-    public String getAnnotationType() {
+    @Override
+    public String getAnnotationType () {
         return "cz-sickboy-netbeans-checkstyle-resources-checkstyle-annotation"; // NOI18N
     }
 
-    public void documentAttach() {
+    public void documentAttach () {
         NbDocument.addAnnotation(document, position, -1, this);
     }
 
-    public void documentDetach() {
+    public void documentDetach () {
         NbDocument.removeAnnotation(document, this);
     }
 
-    public String getShortDescription() {
+    @Override
+    public String getShortDescription () {
         return shortDescription;
     }
 

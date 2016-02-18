@@ -57,7 +57,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
     private static final Logger LOGGER = Logger.getLogger(ConfigurationLoader.class.getName());
 
     private static final String DEFAULT_CONFIGURATION_RESOURCE =
-            "cz/sickboy/netbeans/checkstyle/resources/sun_checks.xml"; // NOI18N
+        "cz/sickboy/netbeans/checkstyle/resources/sun_checks.xml"; // NOI18N
 
     private static final ScheduledExecutorService EXECUTOR = Executors.newScheduledThreadPool(0);
 
@@ -71,16 +71,16 @@ public final class ConfigurationLoader implements PropertyChangeListener {
 
     private Future<?> reloadTask;
 
-    private ConfigurationLoader() {
+    private ConfigurationLoader () {
         super();
     }
 
-    public static synchronized ConfigurationLoader getDefault() {
+    public static synchronized ConfigurationLoader getDefault () {
         if (instance == null) {
             instance = new ConfigurationLoader();
             CheckstyleSettings settings = CheckstyleSettings.getDefault();
             settings.addPropertyChangeListener(
-                    WeakListeners.propertyChange(instance, settings));
+                WeakListeners.propertyChange(instance, settings));
 
             // prepare the configuration
             instance.reloadConfiguration();
@@ -88,7 +88,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
         return instance;
     }
 
-    public synchronized Configuration getConfiguration() throws CheckstyleException {
+    public synchronized Configuration getConfiguration () throws CheckstyleException {
         if (exception != null) {
             throw exception;
         }
@@ -98,7 +98,8 @@ public final class ConfigurationLoader implements PropertyChangeListener {
         return configuration;
     }
 
-    public void propertyChange(PropertyChangeEvent evt) {
+    @Override
+    public void propertyChange (PropertyChangeEvent evt) {
         synchronized (this) {
             configuration = null;
             exception = null;
@@ -108,23 +109,24 @@ public final class ConfigurationLoader implements PropertyChangeListener {
             }
 
             reloadTask = EXECUTOR.schedule(new Runnable() {
-                public void run() {
+                @Override
+                public void run () {
                     reloadConfiguration();
                 }
             }, RELOAD_DELAY_MILLIS, TimeUnit.MILLISECONDS);
         }
     }
 
-    synchronized void reloadConfiguration() {
+    synchronized void reloadConfiguration () {
         configuration = null;
         exception = null;
 
         try {
             CheckstyleSettings.Values values = CheckstyleSettings.getDefault().getValues();
 
-            Properties properties = (values.getCustomPropertyFile() != null)
-                    ? loadProperties(values.getCustomPropertyFile(), System.getProperties())
-                    : System.getProperties();
+            Properties properties = (values.getCustomPropertyFile() != null) ?
+                loadProperties(values.getCustomPropertyFile(), System.getProperties()) :
+                System.getProperties();
 
             Properties fresh = new Properties();
             // doing this because of https://github.com/checkstyle/checkstyle/commit/7d513f0
@@ -155,7 +157,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
             }
 
             configuration = new Configuration(values.getCustomSeverity(),
-                    loadConfiguration(values.getCustomConfigFile(), fresh),
+                loadConfiguration(values.getCustomConfigFile(), fresh),
                 createClassLoader(values.getCustomClasspath()), ignoredPathsPattern, checkedPathsPattern);
         } catch (CheckstyleException ex) {
             exception = ex;
@@ -163,20 +165,22 @@ public final class ConfigurationLoader implements PropertyChangeListener {
         }
     }
 
-    private com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration(
-            String configurationFile, Properties properties) throws CheckstyleException {
+    private com.puppycrawl.tools.checkstyle.api.Configuration loadConfiguration (
+        String configurationFile, Properties properties)
+        throws CheckstyleException
+    {
 
         if (configurationFile != null) {
             return com.puppycrawl.tools.checkstyle.ConfigurationLoader.loadConfiguration(
-                    configurationFile, new PropertiesExpander(properties), false);
+                configurationFile, new PropertiesExpander(properties), false);
         }
 
         InputStream is = getClass().getClassLoader()
-                .getResourceAsStream(DEFAULT_CONFIGURATION_RESOURCE);
+            .getResourceAsStream(DEFAULT_CONFIGURATION_RESOURCE);
 
         try {
             return com.puppycrawl.tools.checkstyle.ConfigurationLoader.loadConfiguration(
-                    new InputSource(is), new PropertiesExpander(System.getProperties()), false);
+                new InputSource(is), new PropertiesExpander(System.getProperties()), false);
         } finally {
             try {
                 is.close();
@@ -186,7 +190,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
         }
     }
 
-    private static ClassLoader createClassLoader(List<File> classpath) {
+    private static ClassLoader createClassLoader (List<File> classpath) {
         if (classpath.isEmpty()) {
             return Checker.class.getClassLoader();
         }
@@ -199,10 +203,10 @@ public final class ConfigurationLoader implements PropertyChangeListener {
             }
         }
         return new URLClassLoader(urls.toArray(new URL[urls.size()]),
-                Checker.class.getClassLoader());
+            Checker.class.getClassLoader());
     }
 
-    private static Properties loadProperties(String propertyFile, Properties defaultProperties) {
+    private static Properties loadProperties (String propertyFile, Properties defaultProperties) {
         Properties properties = new Properties(defaultProperties);
         try {
             InputStream is = new BufferedInputStream(new FileInputStream(propertyFile));

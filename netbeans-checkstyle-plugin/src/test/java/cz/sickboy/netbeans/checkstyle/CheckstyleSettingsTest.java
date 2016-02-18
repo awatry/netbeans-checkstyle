@@ -36,24 +36,24 @@ import org.openide.util.NbPreferences;
  */
 public class CheckstyleSettingsTest extends TestCase {
 
-    public CheckstyleSettingsTest(String name) {
+    public CheckstyleSettingsTest (String name) {
         super(name);
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown () throws Exception {
         Preferences prefs = NbPreferences.forModule(CheckstyleSettings.class);
         prefs.removeNode();
 
         super.tearDown();
     }
 
-    public void testCustomConfigFile() {
+    public void testCustomConfigFile () {
         CheckstyleSettings settings = CheckstyleSettings.getDefault();
         assertNull(settings.getValues().getCustomConfigFile());
 
         TestListener listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_CONFIG_FILE, null, "test");
+            CheckstyleSettings.PROP_CUSTOM_CONFIG_FILE, null, "test");
         settings.addPropertyChangeListener(listener);
         try {
             setCustomConfigFile(settings, "test");
@@ -63,7 +63,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_CONFIG_FILE, "test", null);
+            CheckstyleSettings.PROP_CUSTOM_CONFIG_FILE, "test", null);
         settings.addPropertyChangeListener(listener);
         try {
             setCustomConfigFile(settings, null);
@@ -76,12 +76,12 @@ public class CheckstyleSettingsTest extends TestCase {
         setCustomConfigFile(settings, "test");
     }
 
-    public void testCustomPropertyFile() {
+    public void testCustomPropertyFile () {
         CheckstyleSettings settings = CheckstyleSettings.getDefault();
         assertNull(settings.getValues().getCustomPropertyFile());
 
         TestListener listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_PROPERTY_FILE, null, "test");
+            CheckstyleSettings.PROP_CUSTOM_PROPERTY_FILE, null, "test");
         settings.addPropertyChangeListener(listener);
         try {
             setCustomPropertyFile(settings, "test");
@@ -91,7 +91,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_PROPERTY_FILE, "test", null);
+            CheckstyleSettings.PROP_CUSTOM_PROPERTY_FILE, "test", null);
         settings.addPropertyChangeListener(listener);
         try {
             setCustomPropertyFile(settings, null);
@@ -104,7 +104,7 @@ public class CheckstyleSettingsTest extends TestCase {
         setCustomPropertyFile(settings, "test");
     }
 
-    public void testCustomClasspath() {
+    public void testCustomClasspath () {
         List<File> classpath = new ArrayList();
         Collections.addAll(classpath, new File("file_1"), new File("file_2"));
 
@@ -112,7 +112,7 @@ public class CheckstyleSettingsTest extends TestCase {
         assertEquals(Collections.emptyList(), settings.getValues().getCustomClasspath());
 
         TestListener listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_CLASSPATH, Collections.emptyList(), classpath);
+            CheckstyleSettings.PROP_CUSTOM_CLASSPATH, Collections.emptyList(), classpath);
         settings.addPropertyChangeListener(listener);
         try {
             setCustomClasspath(settings, classpath);
@@ -122,7 +122,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_CLASSPATH, classpath, Collections.emptyList());
+            CheckstyleSettings.PROP_CUSTOM_CLASSPATH, classpath, Collections.emptyList());
         settings.addPropertyChangeListener(listener);
         try {
             setCustomClasspath(settings, null);
@@ -135,7 +135,7 @@ public class CheckstyleSettingsTest extends TestCase {
         setCustomClasspath(settings, classpath);
     }
 
-    public void testCustomProperties() {
+    public void testCustomProperties () {
         Properties properties = new Properties();
         properties.put("prop_1", "value_1");
         properties.put("prop_2", "value_2");
@@ -144,7 +144,7 @@ public class CheckstyleSettingsTest extends TestCase {
         assertEquals(new Properties(), settings.getValues().getCustomProperties());
 
         TestListener listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_PROPERTIES, new Properties(), properties);
+            CheckstyleSettings.PROP_CUSTOM_PROPERTIES, new Properties(), properties);
         settings.addPropertyChangeListener(listener);
         try {
             setCustomProperties(settings, properties);
@@ -154,7 +154,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         listener = new TestListener(settings,
-                CheckstyleSettings.PROP_CUSTOM_PROPERTIES, properties, new Properties());
+            CheckstyleSettings.PROP_CUSTOM_PROPERTIES, properties, new Properties());
         settings.addPropertyChangeListener(listener);
         try {
             setCustomProperties(settings, null);
@@ -167,12 +167,12 @@ public class CheckstyleSettingsTest extends TestCase {
         setCustomProperties(settings, properties);
     }
 
-    public void testIgnoredPathsPattern() {
+    public void testIgnoredPathsPattern () {
         CheckstyleSettings settings = CheckstyleSettings.getDefault();
         assertNull(settings.getValues().getIgnoredPathsPattern());
 
         TestListener listener = new TestListener(settings,
-                CheckstyleSettings.PROP_IGNORED_PATHS_PATTERN, null, "test");
+            CheckstyleSettings.PROP_IGNORED_PATHS_PATTERN, null, "test");
         settings.addPropertyChangeListener(listener);
         try {
             setIgnoredPathsPattern(settings, "test");
@@ -182,7 +182,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         listener = new TestListener(settings,
-                CheckstyleSettings.PROP_IGNORED_PATHS_PATTERN, "test", null);
+            CheckstyleSettings.PROP_IGNORED_PATHS_PATTERN, "test", null);
         settings.addPropertyChangeListener(listener);
         try {
             setIgnoredPathsPattern(settings, null);
@@ -223,44 +223,44 @@ public class CheckstyleSettingsTest extends TestCase {
         setCheckedPathsPattern(settings, "test");
     }
 
-    private static void setCustomConfigFile(CheckstyleSettings settings, String file) {
+    private static void setCustomConfigFile (CheckstyleSettings settings, String file) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
-                file, values.getCustomPropertyFile(),
+            file, values.getCustomPropertyFile(),
             values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern(), values.
             getCheckedPathsPattern());
         settings.setValues(values);
     }
 
-    private static void setCustomPropertyFile(CheckstyleSettings settings, String file) {
+    private static void setCustomPropertyFile (CheckstyleSettings settings, String file) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
-                values.getCustomConfigFile(), file,
+            values.getCustomConfigFile(), file,
             values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern(), values.
             getCheckedPathsPattern());
         settings.setValues(values);
     }
 
-    private static void setCustomClasspath(CheckstyleSettings settings, List<File> classpath) {
+    private static void setCustomClasspath (CheckstyleSettings settings, List<File> classpath) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
-                values.getCustomConfigFile(), values.getCustomPropertyFile(),
+            values.getCustomConfigFile(), values.getCustomPropertyFile(),
             classpath, values.getCustomProperties(), values.getIgnoredPathsPattern(), values.getCheckedPathsPattern());
         settings.setValues(values);
     }
 
-    private static void setCustomProperties(CheckstyleSettings settings, Properties properties) {
+    private static void setCustomProperties (CheckstyleSettings settings, Properties properties) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
-                values.getCustomConfigFile(), values.getCustomPropertyFile(),
+            values.getCustomConfigFile(), values.getCustomPropertyFile(),
             values.getCustomClasspath(), properties, values.getIgnoredPathsPattern(), values.getCheckedPathsPattern());
         settings.setValues(values);
     }
 
-    private static void setIgnoredPathsPattern(CheckstyleSettings settings, String pattern) {
+    private static void setIgnoredPathsPattern (CheckstyleSettings settings, String pattern) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
-                values.getCustomConfigFile(), values.getCustomPropertyFile(),
+            values.getCustomConfigFile(), values.getCustomPropertyFile(),
             values.getCustomClasspath(), values.getCustomProperties(), pattern, values.getCheckedPathsPattern());
         settings.setValues(values);
     }
@@ -273,7 +273,7 @@ public class CheckstyleSettingsTest extends TestCase {
         settings.setValues(values);
     }
 
-    private static void assertEquals(List expected, List value) {
+    private static void assertEquals (List expected, List value) {
         assertEquals(expected.size(), value.size());
 
         for (int i = 0; i < expected.size(); i++) {
@@ -281,7 +281,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
     }
 
-    private static void assertEquals(Properties expected, Properties value) {
+    private static void assertEquals (Properties expected, Properties value) {
         assertEquals(expected.size(), value.size());
 
         for (Map.Entry<Object, Object> entry : expected.entrySet()) {
@@ -301,7 +301,7 @@ public class CheckstyleSettingsTest extends TestCase {
 
         private boolean received;
 
-        public TestListener(Object source, String propertyName, Object oldValue, Object newValue) {
+        public TestListener (Object source, String propertyName, Object oldValue, Object newValue) {
             this.source = source;
             this.propertyName = propertyName;
             this.oldValue = oldValue;
@@ -309,7 +309,7 @@ public class CheckstyleSettingsTest extends TestCase {
         }
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange (PropertyChangeEvent evt) {
             assertFalse(received);
             received = true;
 

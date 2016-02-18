@@ -21,12 +21,12 @@ package cz.sickboy.netbeans.checkstyle.tasklist;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import cz.sickboy.netbeans.checkstyle.CheckerCache;
 import cz.sickboy.netbeans.checkstyle.CheckstyleListener;
 import cz.sickboy.netbeans.checkstyle.CheckstyleSettings;
 import cz.sickboy.netbeans.checkstyle.Configuration;
 import cz.sickboy.netbeans.checkstyle.ConfigurationLoader;
 import cz.sickboy.netbeans.checkstyle.Severity;
-import cz.sickboy.netbeans.checkstyle.CheckerCache;
 import cz.sickboy.netbeans.checkstyle.error.ErrorHandler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -53,13 +53,17 @@ public class CheckstyleTaskScanner extends FileTaskScanner implements PropertyCh
 
     private Callback callback;
 
-    public CheckstyleTaskScanner() {
+    /**
+     * Create a new CheckstyleTaskScanner.
+     */
+    public CheckstyleTaskScanner () {
         super(NbBundle.getMessage(CheckstyleTaskScanner.class, "CheckstyleTaskScanner.label"),
-                NbBundle.getMessage(CheckstyleTaskScanner.class, "CheckstyleTaskScanner.hint"),
-                "Advanced/cz-sickboy-netbeans-checkstyle-options-CheckstyleOptions"); // NOI18N
+            NbBundle.getMessage(CheckstyleTaskScanner.class, "CheckstyleTaskScanner.hint"),
+            "Advanced/cz-sickboy-netbeans-checkstyle-options-CheckstyleOptions"); // NOI18N
     }
 
-    public synchronized void attach(Callback callback) {
+    @Override
+    public synchronized void attach (Callback callback) {
         if (this.callback == null && callback == null) {
             return;
         }
@@ -73,7 +77,8 @@ public class CheckstyleTaskScanner extends FileTaskScanner implements PropertyCh
         this.callback = callback;
     }
 
-    public List<? extends Task> scan(FileObject fileObject) {
+    @Override
+    public List<? extends Task> scan (FileObject fileObject) {
         if (fileObject == null || !"java".equalsIgnoreCase(fileObject.getExt())) { // NOI18N
             return null;
         }
@@ -97,7 +102,7 @@ public class CheckstyleTaskScanner extends FileTaskScanner implements PropertyCh
             }
 
             CollectingListener listener = new CollectingListener(
-                    config.getSeverity(), fileObject);
+                config.getSeverity(), fileObject);
 
             ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
             try {
@@ -125,29 +130,33 @@ public class CheckstyleTaskScanner extends FileTaskScanner implements PropertyCh
     }
 
     @Override
-    public void notifyFinish() {
+    public void notifyFinish () {
         checkerCache.clear();
     }
 
-    public synchronized void propertyChange(PropertyChangeEvent evt) {
+    @Override
+    public synchronized void propertyChange (PropertyChangeEvent evt) {
         if (callback != null) {
             callback.refreshAll();
         }
     }
 
+    /**
+     * Listener that aggregates checkstyle results for a file..
+     */
     private static class CollectingListener extends CheckstyleListener<Task> {
 
         private final FileObject file;
 
-        public CollectingListener(Severity minimalSeverity, FileObject file) {
+        public CollectingListener (Severity minimalSeverity, FileObject file) {
             super(minimalSeverity);
             this.file = file;
         }
 
         @Override
-        public Task createResult(AuditEvent evt) {
+        public Task createResult (AuditEvent evt) {
             return Task.create(file, "cz-sickboy-netbeans-checkstyle-Task", // NOI18N
-                    evt.getMessage(), evt.getLine());
+                evt.getMessage(), evt.getLine());
         }
     }
 }

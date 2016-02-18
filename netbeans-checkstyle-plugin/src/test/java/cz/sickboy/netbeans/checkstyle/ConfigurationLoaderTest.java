@@ -31,44 +31,46 @@ import org.openide.util.NbPreferences;
  */
 public class ConfigurationLoaderTest extends TestCase {
 
-    public ConfigurationLoaderTest(String name) {
+    public ConfigurationLoaderTest (String name) {
         super(name);
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown () throws Exception {
         Preferences prefs = NbPreferences.forModule(CheckstyleSettings.class);
         prefs.removeNode();
 
         super.tearDown();
     }
 
-    public void testConfiguration() throws CheckstyleException {
+    public void testConfiguration ()
+        throws CheckstyleException
+    {
         ConfigurationLoader loader = ConfigurationLoader.getDefault();
         assertNotNull(loader.getConfiguration().getCheckstyleConfiguration());
 
         com.puppycrawl.tools.checkstyle.api.Configuration config =
-                loader.getConfiguration().getCheckstyleConfiguration();
+            loader.getConfiguration().getCheckstyleConfiguration();
         loader.reloadConfiguration();
         com.puppycrawl.tools.checkstyle.api.Configuration refreshedConfig =
-                loader.getConfiguration().getCheckstyleConfiguration();
+            loader.getConfiguration().getCheckstyleConfiguration();
         assertNotSame(config, refreshedConfig);
         assertNotNull(refreshedConfig);
     }
 
-    public void testClassLoader() throws CheckstyleException {
+    public void testClassLoader () throws CheckstyleException {
         ConfigurationLoader loader = ConfigurationLoader.getDefault();
         assertNotNull(loader.getConfiguration().getCheckstyleClassLoader());
 
         ClassLoader classLoader = loader.getConfiguration().getCheckstyleClassLoader();
         loader.reloadConfiguration();
         ClassLoader refreshedClassLoader = loader.getConfiguration().getCheckstyleClassLoader();
-        
+
         assertEquals(classLoader, CheckstyleModule.class.getClassLoader());
         assertEquals(refreshedClassLoader, CheckstyleModule.class.getClassLoader());
     }
 
-    public void testListener() throws CheckstyleException {
+    public void testListener () throws CheckstyleException {
         ConfigurationLoader loader = ConfigurationLoader.getDefault();
         CheckstyleSettings settings = CheckstyleSettings.getDefault();
 
@@ -84,7 +86,7 @@ public class ConfigurationLoaderTest extends TestCase {
         assertNotNull(refreshedConfig);
     }
 
-    public void testDefault() throws CheckstyleException {
+    public void testDefault () throws CheckstyleException {
         ConfigurationLoader loader = ConfigurationLoader.getDefault();
         CheckstyleSettings.Values snapshot = new CheckstyleSettings.Values(
             Severity.ERROR, "", null, null, null, null, null);

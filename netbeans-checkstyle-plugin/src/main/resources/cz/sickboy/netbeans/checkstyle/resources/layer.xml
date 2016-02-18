@@ -13,7 +13,7 @@
     <folder name="Editors">
         <folder name="AnnotationTypes">
             <file name="cz-sickboy-netbeans-checkstyle-resources-checkstyle-annotation.xml"
-                url="nbresloc:/cz/sickboy/netbeans/checkstyle/resources/checkstyle-annotation.xml"/>
+                  url="nbresloc:/cz/sickboy/netbeans/checkstyle/resources/checkstyle-annotation.xml"/>
         </folder>
     </folder>
 

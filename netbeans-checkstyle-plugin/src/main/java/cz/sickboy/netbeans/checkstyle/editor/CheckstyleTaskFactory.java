@@ -31,14 +31,15 @@ import org.openide.filesystems.FileObject;
  */
 public class CheckstyleTaskFactory extends EditorAwareJavaSourceTaskFactory {
 
-    public CheckstyleTaskFactory() {
+    public CheckstyleTaskFactory () {
         super(Phase.UP_TO_DATE, Priority.LOW);
     }
 
     /**
      * {@inheritDoc}
      */
-    protected CancellableTask<CompilationInfo> createTask(FileObject file) {
+    @Override
+    protected CancellableTask<CompilationInfo> createTask (FileObject file) {
         return new CheckstyleTask(file);
     }
 

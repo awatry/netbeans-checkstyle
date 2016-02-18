@@ -31,11 +31,11 @@ public class ConfigurationTest extends TestCase {
 
     private static final TestConfiguration TEST_CONFIGURATION = new TestConfiguration();
 
-    public ConfigurationTest(String name) {
+    public ConfigurationTest (String name) {
         super(name);
     }
 
-    public void testConstructor() {
+    public void testConstructor () {
         Configuration config = new Configuration(null, null, null, null, null);
         assertNull(config.getSeverity());
         assertNull(config.getCheckstyleClassLoader());
@@ -91,23 +91,28 @@ public class ConfigurationTest extends TestCase {
 
     private static class TestConfiguration implements com.puppycrawl.tools.checkstyle.api.Configuration {
 
-        public String getAttribute(String name) throws CheckstyleException {
+        @Override
+        public String getAttribute (String name) throws CheckstyleException {
             return null;
         }
 
-        public String[] getAttributeNames() {
-            return new String[] {};
+        @Override
+        public String[] getAttributeNames () {
+            return new String[]{};
         }
 
-        public com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren() {
-            return new com.puppycrawl.tools.checkstyle.api.Configuration[] {};
+        @Override
+        public com.puppycrawl.tools.checkstyle.api.Configuration[] getChildren () {
+            return new com.puppycrawl.tools.checkstyle.api.Configuration[]{};
         }
 
-        public String getName() {
+        @Override
+        public String getName () {
             return "Test"; // NOI18N
         }
 
-        public ImmutableMap<String, String> getMessages() {
+        @Override
+        public ImmutableMap<String, String> getMessages () {
             return ImmutableMap.of();
         }
     }

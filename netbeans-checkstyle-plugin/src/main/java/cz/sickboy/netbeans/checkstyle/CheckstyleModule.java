@@ -31,8 +31,7 @@ import org.openide.util.NbPreferences;
 import org.openide.windows.WindowManager;
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ * Manages a module's lifecycle. Remember that an installer is optional and often not needed at all.
  *
  * @author Petr Hejl
  */
@@ -42,14 +41,14 @@ public class CheckstyleModule extends ModuleInstall {
         "cz.sickboy.netbeans.checkstyle.message56.shown"; // NOI18N
 
     @Override
-    public void restored() {
+    public void restored () {
         final Preferences prefs = NbPreferences.forModule(CheckstyleModule.class);
         boolean shown = prefs.getBoolean(PROP_CHECKSTYLE_MESSAGE56_SHOWN, false);
         if (!shown && CheckstyleSettings.getDefault().getValues().getCustomConfigFile() != null) {
             WindowManager.getDefault().invokeWhenUIReady(new Runnable() {
 
                 @Override
-                public void run() {
+                public void run () {
                     prefs.putBoolean(PROP_CHECKSTYLE_MESSAGE56_SHOWN, true);
                     String message = NbBundle.getMessage(CheckstyleModule.class, "CheckstyleModule.message56");
                     JLabel label = new JLabel(message);
@@ -61,17 +60,16 @@ public class CheckstyleModule extends ModuleInstall {
         }
     }
 
-
     @Override
-    public void uninstalled() {
+    public void uninstalled () {
         CheckstyleAnnotationContainer.reset();
     }
 
-    private static Dimension getPreferredSize(String html, int width) {
+    private static Dimension getPreferredSize (String html, int width) {
         JLabel test = new JLabel(html);
 
         Object object = test.getClientProperty(
-                javax.swing.plaf.basic.BasicHTML.propertyKey);
+            javax.swing.plaf.basic.BasicHTML.propertyKey);
         if (object instanceof View) {
             View view = (View) object;
 

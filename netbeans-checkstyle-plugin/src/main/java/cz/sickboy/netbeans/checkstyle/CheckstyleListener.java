@@ -38,20 +38,20 @@ public abstract class CheckstyleListener<T> implements AuditListener {
     /* GuardedBy("this") */
     private final List<T> results = new ArrayList<T>();
 
-    public CheckstyleListener(Severity minimalSeverity) {
+    public CheckstyleListener (Severity minimalSeverity) {
         this.minimalSeverity = minimalSeverity;
     }
 
-    public synchronized final List<T> getResults() {
+    public synchronized final List<T> getResults () {
         return results;
     }
 
-    public abstract T createResult(AuditEvent evt);
+    public abstract T createResult (AuditEvent evt);
 
     @Override
-    public final void addError(AuditEvent evt) {
+    public final void addError (AuditEvent evt) {
         if (LOGGER.isLoggable(Level.FINEST)) {
-            LOGGER.log(Level.FINEST, "{0}: {1}", new Object[] {evt.getLine(), evt.getMessage()});
+            LOGGER.log(Level.FINEST, "{0}: {1}", new Object[]{evt.getLine(), evt.getMessage()});
         }
 
         if (evt.getLine() <= 0) {
@@ -69,23 +69,23 @@ public abstract class CheckstyleListener<T> implements AuditListener {
     }
 
     @Override
-    public final void addException(AuditEvent evt, Throwable throwable) {
+    public final void addException (AuditEvent evt, Throwable throwable) {
         LOGGER.log(Level.SEVERE, null, throwable);
     }
 
     @Override
-    public final void auditFinished(AuditEvent evt) {
+    public final void auditFinished (AuditEvent evt) {
     }
 
     @Override
-    public final void auditStarted(AuditEvent evt) {
+    public final void auditStarted (AuditEvent evt) {
     }
 
     @Override
-    public final void fileFinished(AuditEvent evt) {
+    public final void fileFinished (AuditEvent evt) {
     }
 
     @Override
-    public final void fileStarted(AuditEvent evt) {
+    public final void fileStarted (AuditEvent evt) {
     }
 }

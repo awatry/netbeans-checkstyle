@@ -47,14 +47,14 @@ public final class ErrorHandler implements PropertyChangeListener {
     private static final Logger LOGGER = Logger.getLogger(ErrorHandler.class.getName());
 
     private static final Icon ICON = new ImageIcon(ImageUtilities.loadImage(
-            "cz/sickboy/netbeans/checkstyle/resources/configuration-error.png")); // NOI18N
+        "cz/sickboy/netbeans/checkstyle/resources/configuration-error.png")); // NOI18N
 
     private static final ActionListener OPTIONS_ACTION = new ActionListener() {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed (ActionEvent e) {
             OptionsDisplayer.getDefault().open(
-                    "Advanced/cz-sickboy-netbeans-checkstyle-options-CheckstyleOptions"); // NOI18N
+                "Advanced/cz-sickboy-netbeans-checkstyle-options-CheckstyleOptions"); // NOI18N
         }
     };
 
@@ -64,17 +64,17 @@ public final class ErrorHandler implements PropertyChangeListener {
 
     private String message;
 
-    public static synchronized ErrorHandler getDefault() {
+    public static synchronized ErrorHandler getDefault () {
         if (instance == null) {
             instance = new ErrorHandler();
             CheckstyleSettings settings = CheckstyleSettings.getDefault();
             settings.addPropertyChangeListener(
-                    WeakListeners.propertyChange(instance, settings));
+                WeakListeners.propertyChange(instance, settings));
         }
         return instance;
     }
 
-    public void handleError(FileObject file, Logger logger, CheckstyleException ex) {
+    public void handleError (FileObject file, Logger logger, CheckstyleException ex) {
         Logger current = logger;
         if (current == null) {
             current = LOGGER;
@@ -82,22 +82,23 @@ public final class ErrorHandler implements PropertyChangeListener {
         current.log(Level.INFO, null, ex);
 
         Exception toHandle = ex;
-        if ((ex.getCause() instanceof Exception)
-                && ex.getMessage() != null && ex.getMessage().startsWith("unable to parse configuration stream")) {
+        if ((ex.getCause() instanceof Exception) &&
+            ex.getMessage() != null && ex.getMessage().startsWith("unable to parse configuration stream"))
+        {
             toHandle = (Exception) ex.getCause();
         }
         synchronized (this) {
             if (message == null || !message.equals(toHandle.getMessage())) {
                 message = toHandle.getMessage();
                 notifications.add(NotificationDisplayer.getDefault().notify(
-                        NbBundle.getMessage(ErrorHandler.class, "ErrorHandler.title"),
-                        ICON, toHandle.getLocalizedMessage(), OPTIONS_ACTION, NotificationDisplayer.Priority.HIGH));
+                    NbBundle.getMessage(ErrorHandler.class, "ErrorHandler.title"),
+                    ICON, toHandle.getLocalizedMessage(), OPTIONS_ACTION, NotificationDisplayer.Priority.HIGH));
             }
         }
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange (PropertyChangeEvent evt) {
         List<Notification> toRemove;
         synchronized (this) {
             toRemove = new ArrayList<Notification>(notifications);

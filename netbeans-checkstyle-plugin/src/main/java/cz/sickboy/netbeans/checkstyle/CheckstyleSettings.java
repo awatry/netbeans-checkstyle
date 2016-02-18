@@ -80,32 +80,32 @@ public final class CheckstyleSettings {
 
     private final AtomicInteger listenerCount = new AtomicInteger(0);
 
-    private CheckstyleSettings() {
+    private CheckstyleSettings () {
         super();
     }
 
-    public static synchronized CheckstyleSettings getDefault() {
+    public static synchronized CheckstyleSettings getDefault () {
         if (instance == null) {
             instance = new CheckstyleSettings();
         }
         return instance;
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    public void addPropertyChangeListener (PropertyChangeListener listener) {
         propertySupport.addPropertyChangeListener(listener);
         if (LOGGER.isLoggable(Level.FINER)) {
             LOGGER.log(Level.FINER, "Listener count: {0}", listenerCount.incrementAndGet());
         }
     }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
+    public void removePropertyChangeListener (PropertyChangeListener listener) {
         propertySupport.removePropertyChangeListener(listener);
         if (LOGGER.isLoggable(Level.FINER)) {
             LOGGER.log(Level.FINER, "Listener count: {0}", listenerCount.decrementAndGet());
         }
     }
 
-    public void setValues(Values values) {
+    public void setValues (Values values) {
         List<PropertyChangeEvent> events = new ArrayList<PropertyChangeEvent>();
 
         synchronized (this) {
@@ -124,16 +124,16 @@ public final class CheckstyleSettings {
         }
     }
 
-    public Values getValues() {
+    public Values getValues () {
         synchronized (this) {
             updateProperties();
             return new Values(getCustomSeverity(), getCustomConfigFile(),
-                    getCustomPropertyFile(), getCustomClasspath(),
+                getCustomPropertyFile(), getCustomClasspath(),
                 getCustomProperties(), getIgnoredPathsPattern(), getCheckedPathsPattern());
         }
     }
 
-    private synchronized void updateProperties() {
+    private synchronized void updateProperties () {
         // we intentionally do not fire events as there is no real change
         Preferences prefs = getPreferences();
         if (prefs.getBoolean(PROP_UPDATED, false)) {
@@ -151,7 +151,7 @@ public final class CheckstyleSettings {
         prefs.putBoolean(PROP_UPDATED, true);
     }
 
-    private void setCustomSeverity(Severity severity, List<PropertyChangeEvent> events) {
+    private void setCustomSeverity (Severity severity, List<PropertyChangeEvent> events) {
         Severity oldValue;
         synchronized (this) {
             oldValue = getCustomSeverity();
@@ -163,12 +163,12 @@ public final class CheckstyleSettings {
         }
     }
 
-    private synchronized Severity getCustomSeverity() {
+    private synchronized Severity getCustomSeverity () {
         return Severity.valueOf(
-                getPreferences().get(PROP_SEVERITY, Severity.IGNORE.name()));
+            getPreferences().get(PROP_SEVERITY, Severity.IGNORE.name()));
     }
 
-    private void setCustomConfigFile(String location, List<PropertyChangeEvent> events) {
+    private void setCustomConfigFile (String location, List<PropertyChangeEvent> events) {
         String oldValue;
         synchronized (this) {
             oldValue = getCustomConfigFile();
@@ -184,11 +184,11 @@ public final class CheckstyleSettings {
         }
     }
 
-    private synchronized String getCustomConfigFile() {
+    private synchronized String getCustomConfigFile () {
         return trimToNull(getPreferences().get(PROP_CUSTOM_CONFIG_FILE, null));
     }
 
-    private void setCustomPropertyFile(String location, List<PropertyChangeEvent> events) {
+    private void setCustomPropertyFile (String location, List<PropertyChangeEvent> events) {
         String oldValue;
         synchronized (this) {
             oldValue = getCustomPropertyFile();
@@ -204,11 +204,11 @@ public final class CheckstyleSettings {
         }
     }
 
-    private synchronized String getCustomPropertyFile() {
+    private synchronized String getCustomPropertyFile () {
         return trimToNull(getPreferences().get(PROP_CUSTOM_PROPERTY_FILE, null));
     }
 
-    private void setCustomClasspath(List<File> classpath, List<PropertyChangeEvent> events) {
+    private void setCustomClasspath (List<File> classpath, List<PropertyChangeEvent> events) {
         String value = null;
         List<File> copied = Collections.emptyList();
 
@@ -240,7 +240,7 @@ public final class CheckstyleSettings {
         }
     }
 
-    private List<File> getCustomClasspath() {
+    private List<File> getCustomClasspath () {
         String value;
         synchronized (this) {
             value = getPreferences().get(PROP_CUSTOM_CLASSPATH, null);
@@ -255,7 +255,7 @@ public final class CheckstyleSettings {
         return files;
     }
 
-    private void setCustomProperties(Properties properties, List<PropertyChangeEvent> events) {
+    private void setCustomProperties (Properties properties, List<PropertyChangeEvent> events) {
         String value = null;
         Properties copied = new Properties();
 
@@ -292,7 +292,7 @@ public final class CheckstyleSettings {
         }
     }
 
-    private Properties getCustomProperties() {
+    private Properties getCustomProperties () {
         String value;
         synchronized (this) {
             value = getPreferences().get(PROP_CUSTOM_PROPERTIES, null);
@@ -310,7 +310,7 @@ public final class CheckstyleSettings {
         return properties;
     }
 
-    private void setIgnoredPathsPattern(String pattern, List<PropertyChangeEvent> events) {
+    private void setIgnoredPathsPattern (String pattern, List<PropertyChangeEvent> events) {
         String oldValue;
         synchronized (this) {
             oldValue = getIgnoredPathsPattern();
@@ -326,7 +326,7 @@ public final class CheckstyleSettings {
         }
     }
 
-    private synchronized String getIgnoredPathsPattern() {
+    private synchronized String getIgnoredPathsPattern () {
         return trimToNull(getPreferences().get(PROP_IGNORED_PATHS_PATTERN, null));
     }
 
@@ -350,7 +350,7 @@ public final class CheckstyleSettings {
         return trimToNull(getPreferences().get(PROP_CHECKED_PATHS_PATTERN, null));
     }
 
-    private static boolean isEqual(List<File> oldClasspath, List<File> newClasspath) {
+    private static boolean isEqual (List<File> oldClasspath, List<File> newClasspath) {
         if (oldClasspath == newClasspath) {
             return true;
         }
@@ -371,7 +371,7 @@ public final class CheckstyleSettings {
         return true;
     }
 
-    private static boolean isEqual(Properties oldProperties, Properties newProperties) {
+    private static boolean isEqual (Properties oldProperties, Properties newProperties) {
         if (oldProperties == newProperties) {
             return true;
         }
@@ -392,11 +392,11 @@ public final class CheckstyleSettings {
         return true;
     }
 
-    private Preferences getPreferences() {
+    private Preferences getPreferences () {
         return NbPreferences.forModule(CheckstyleSettings.class);
     }
 
-    private static String trimToNull(String value) {
+    private static String trimToNull (String value) {
         if (value == null || value.trim().equals("")) {
             return null;
         }
@@ -419,9 +419,10 @@ public final class CheckstyleSettings {
 
         private final String checkedPathsPattern;
 
-        public Values(Severity customSeverity, String customConfigFile,
-                String customPropetyFile, List<File> customClasspath,
-            Properties customProperties, String ignoredPathsPattern, String checkedPathsPattern) {
+        public Values (Severity customSeverity, String customConfigFile,
+            String customPropetyFile, List<File> customClasspath,
+            Properties customProperties, String ignoredPathsPattern, String checkedPathsPattern)
+        {
 
             this.customSeverity = customSeverity;
             this.customConfigFile = customConfigFile;
@@ -441,27 +442,27 @@ public final class CheckstyleSettings {
             this.checkedPathsPattern = checkedPathsPattern;
         }
 
-        public Severity getCustomSeverity() {
+        public Severity getCustomSeverity () {
             return customSeverity;
         }
 
-        public List<File> getCustomClasspath() {
+        public List<File> getCustomClasspath () {
             return customClasspath;
         }
 
-        public String getCustomConfigFile() {
+        public String getCustomConfigFile () {
             return customConfigFile;
         }
 
-        public Properties getCustomProperties() {
+        public Properties getCustomProperties () {
             return customProperties;
         }
 
-        public String getCustomPropertyFile() {
+        public String getCustomPropertyFile () {
             return customPropertyFile;
         }
 
-        public String getIgnoredPathsPattern() {
+        public String getIgnoredPathsPattern () {
             return ignoredPathsPattern;
         }
 

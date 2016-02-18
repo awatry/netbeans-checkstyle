@@ -44,28 +44,27 @@ public final class CheckstyleAnnotationContainer {
     private static final Logger LOGGER = Logger.getLogger(CheckstyleAnnotationContainer.class.getName());
 
     private static final RequestProcessor UPDATER = new RequestProcessor(
-            CheckstyleAnnotationContainer.class.getName(), 1, false, false);
+        CheckstyleAnnotationContainer.class.getName(), 1, false, false);
 
     private static final Map<FileObject, CheckstyleAnnotationContainer> CONTAINERS =
-            new HashMap<FileObject, CheckstyleAnnotationContainer>();
+        new HashMap<FileObject, CheckstyleAnnotationContainer>();
 
     private final FileObject fileObject;
 
     private final List<CheckstyleAnnotation> annotations = new ArrayList<CheckstyleAnnotation>();
 
-    private CheckstyleAnnotationContainer(FileObject fileObject) {
+    private CheckstyleAnnotationContainer (FileObject fileObject) {
         this.fileObject = fileObject;
     }
 
     /**
-     * Returns the annotation container for the given file object. If it
-     * exists returns existing one, otherwise return newly created holder.
+     * Returns the annotation container for the given file object. If it exists returns existing one, otherwise return
+     * newly created holder.
      *
      * @param fileObject the file for which we want to get the annotation holder
-     * @return the annotation container for the given file object (existing
-     *           or newly created one).
+     * @return the annotation container for the given file object (existing or newly created one).
      */
-    public static synchronized CheckstyleAnnotationContainer getInstance(FileObject fileObject) {
+    public static synchronized CheckstyleAnnotationContainer getInstance (FileObject fileObject) {
         CheckstyleAnnotationContainer annotationContainer = CONTAINERS.get(fileObject);
 
         if (annotationContainer != null) {
@@ -74,7 +73,7 @@ public final class CheckstyleAnnotationContainer {
 
         try {
             EditorCookie.Observable editorCookie = DataObject.find(fileObject)
-                    .getCookie(EditorCookie.Observable.class);
+                .getCookie(EditorCookie.Observable.class);
 
             if (editorCookie == null) {
                 return null;
@@ -98,7 +97,7 @@ public final class CheckstyleAnnotationContainer {
     /**
      * Resets the factory clearing all holder and all annotations stored.
      */
-    public static synchronized void reset() {
+    public static synchronized void reset () {
         for (CheckstyleAnnotationContainer annotationContainer : CONTAINERS.values()) {
             annotationContainer.setAnnotations(Collections.<CheckstyleAnnotation>emptyList());
         }
@@ -111,17 +110,17 @@ public final class CheckstyleAnnotationContainer {
      *
      * @return the file object to which annotations belong to
      */
-    public FileObject getFileObject() {
+    public FileObject getFileObject () {
         return fileObject;
     }
 
     /**
-     * Sets the new bunch of annotations to the file object. The old annotations
-     * are removed and detached. This method is <i>thread safe</i>.
+     * Sets the new bunch of annotations to the file object. The old annotations are removed and detached. This method
+     * is <i>thread safe</i>.
      *
      * @param newAnnotations the fresh annotations to attach
      */
-    public synchronized void setAnnotations(List<CheckstyleAnnotation> newAnnotations) {
+    public synchronized void setAnnotations (List<CheckstyleAnnotation> newAnnotations) {
         UPDATER.post(new AnnotationUpdater(newAnnotations, annotations));
     }
 
@@ -130,7 +129,7 @@ public final class CheckstyleAnnotationContainer {
      *
      * @return unmodifiable list of current used annotations
      */
-    public synchronized List<CheckstyleAnnotation> getAnnotations() {
+    public synchronized List<CheckstyleAnnotation> getAnnotations () {
         return Collections.unmodifiableList(annotations);
     }
 
@@ -140,21 +139,22 @@ public final class CheckstyleAnnotationContainer {
 
         private final List<CheckstyleAnnotation> annotationsToRemove;
 
-        public AnnotationUpdater(List<CheckstyleAnnotation> annotationsToAdd,
-                List<CheckstyleAnnotation> annotationsToRemove) {
+        public AnnotationUpdater (List<CheckstyleAnnotation> annotationsToAdd,
+            List<CheckstyleAnnotation> annotationsToRemove)
+        {
 
             this.annotationsToAdd = new ArrayList<CheckstyleAnnotation>(annotationsToAdd);
             this.annotationsToRemove = new ArrayList<CheckstyleAnnotation>(annotationsToRemove);
         }
 
         @Override
-        public void run() {
+        public void run () {
             for (CheckstyleAnnotation annotation : annotationsToRemove) {
                 annotation.documentDetach();
             }
 
             List<CheckstyleAnnotation> addedAnnotations =
-                    new ArrayList<CheckstyleAnnotation>(annotationsToAdd.size());
+                new ArrayList<CheckstyleAnnotation>(annotationsToAdd.size());
             for (CheckstyleAnnotation annotation : annotationsToAdd) {
                 annotation.documentAttach();
                 addedAnnotations.add(annotation);
@@ -173,20 +173,23 @@ public final class CheckstyleAnnotationContainer {
 
         private final EditorCookie.Observable editorCookie;
 
-        public CloseHandler(CheckstyleAnnotationContainer container, EditorCookie.Observable editorCookie) {
+        public CloseHandler (CheckstyleAnnotationContainer container, EditorCookie.Observable editorCookie) {
 
             this.container = container;
             this.editorCookie = editorCookie;
         }
 
-        public void propertyChange(PropertyChangeEvent evt) {
-            if (evt.getPropertyName() == null
-                    || EditorCookie.Observable.PROP_OPENED_PANES.equals(evt.getPropertyName())) {
+        @Override
+        public void propertyChange (PropertyChangeEvent evt) {
+            if (evt.getPropertyName() == null ||
+                EditorCookie.Observable.PROP_OPENED_PANES.equals(evt.getPropertyName()))
+            {
                 run();
             }
         }
 
-        public void run() {
+        @Override
+        public void run () {
             if (editorCookie.getOpenedPanes() == null) {
                 synchronized (CheckstyleAnnotationContainer.class) {
                     CONTAINERS.remove(container.getFileObject());

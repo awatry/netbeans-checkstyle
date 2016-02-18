@@ -30,59 +30,56 @@ public enum Severity {
     ERROR {
 
         @Override
-        public String toString() {
+        public String toString () {
             return NbBundle.getMessage(Severity.class,
-                    "CheckstyleSeverity.error.label");
+                "CheckstyleSeverity.error.label");
         }
 
         @Override
-        public boolean include(SeverityLevel level) {
-            return level != SeverityLevel.IGNORE && level != SeverityLevel.INFO
-                    && level != SeverityLevel.WARNING;
+        public boolean include (SeverityLevel level) {
+            return level != SeverityLevel.IGNORE && level != SeverityLevel.INFO &&
+                level != SeverityLevel.WARNING;
         }
     },
-
     WARNING {
 
         @Override
-        public String toString() {
+        public String toString () {
             return NbBundle.getMessage(Severity.class,
-                    "CheckstyleSeverity.warning.label");
+                "CheckstyleSeverity.warning.label");
         }
 
         @Override
-        public boolean include(SeverityLevel level) {
+        public boolean include (SeverityLevel level) {
             return level != SeverityLevel.IGNORE && level != SeverityLevel.INFO;
         }
     },
-
     INFO {
 
         @Override
-        public String toString() {
+        public String toString () {
             return NbBundle.getMessage(Severity.class,
-                    "CheckstyleSeverity.info.label");
+                "CheckstyleSeverity.info.label");
         }
 
         @Override
-        public boolean include(SeverityLevel level) {
+        public boolean include (SeverityLevel level) {
             return level != SeverityLevel.IGNORE;
         }
     },
-
     IGNORE {
 
         @Override
-        public String toString() {
+        public String toString () {
             return NbBundle.getMessage(Severity.class,
-                    "CheckstyleSeverity.ignore.label");
+                "CheckstyleSeverity.ignore.label");
         }
 
         @Override
-        public boolean include(SeverityLevel level) {
+        public boolean include (SeverityLevel level) {
             return true;
         }
     };
 
-    public abstract boolean include(SeverityLevel level);
+    public abstract boolean include (SeverityLevel level);
 }

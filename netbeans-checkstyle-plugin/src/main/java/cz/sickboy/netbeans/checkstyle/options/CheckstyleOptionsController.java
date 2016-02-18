@@ -44,13 +44,12 @@ import org.openide.util.NbBundle;
 import org.openide.util.NbCollections;
 
 /**
- * Class implementing the controller for the options dialog. Presents the
- * {@link CheckstyleOptionsPanel} as the configuration component.
+ * Class implementing the controller for the options dialog. Presents the {@link CheckstyleOptionsPanel} as the
+ * configuration component.
  *
  * @author Petr Hejl
  */
-public class CheckstyleOptionsController extends OptionsPanelController
-        implements ActionListener {
+public class CheckstyleOptionsController extends OptionsPanelController implements ActionListener {
 
     private static final FileFilter CONFIG_FILE_FILTER = new ConfigFileFilter();
 
@@ -67,7 +66,7 @@ public class CheckstyleOptionsController extends OptionsPanelController
     /**
      * Constructs the controller.
      */
-    public CheckstyleOptionsController() {
+    public CheckstyleOptionsController () {
         super();
     }
 
@@ -75,7 +74,7 @@ public class CheckstyleOptionsController extends OptionsPanelController
      * {@inheritDoc}
      */
     @Override
-    public void update() {
+    public void update () {
         CheckstyleSettings.Values values = CheckstyleSettings.getDefault().getValues();
 
         // TODO remove UI from controller
@@ -86,7 +85,7 @@ public class CheckstyleOptionsController extends OptionsPanelController
         classpath = new ArrayList<File>(values.getCustomClasspath());
         panel.classpathPanel.removeAll();
         PropertyPanel classpathPanel = new PropertyPanel(
-                new ClasspathProperty(classpath), PropertyPanel.PREF_CUSTOM_EDITOR);
+            new ClasspathProperty(classpath), PropertyPanel.PREF_CUSTOM_EDITOR);
         panel.classpathPanel.add(classpathPanel);
         panel.classpathLabel.setLabelFor(classpathPanel);
 
@@ -94,7 +93,7 @@ public class CheckstyleOptionsController extends OptionsPanelController
         properties.putAll(values.getCustomProperties());
         panel.propertiesPanel.removeAll();
         PropertyPanel propertiesPanel = new PropertyPanel(
-                new PropertiesProperty(properties), PropertyPanel.PREF_CUSTOM_EDITOR);
+            new PropertiesProperty(properties), PropertyPanel.PREF_CUSTOM_EDITOR);
         panel.propertiesPanel.add(propertiesPanel);
         panel.propertiesLabel.setLabelFor(propertiesPanel);
 
@@ -108,7 +107,8 @@ public class CheckstyleOptionsController extends OptionsPanelController
     /**
      * {@inheritDoc}
      */
-    public void applyChanges() {
+    @Override
+    public void applyChanges () {
         if (!initialized) {
             return;
         }
@@ -125,21 +125,24 @@ public class CheckstyleOptionsController extends OptionsPanelController
     /**
      * {@inheritDoc}
      */
-    public void cancel() {
+    @Override
+    public void cancel () {
         // nothing to do for now
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isChanged() {
+    @Override
+    public boolean isChanged () {
         return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isValid() {
+    @Override
+    public boolean isValid () {
         return true;
     }
 
@@ -148,7 +151,8 @@ public class CheckstyleOptionsController extends OptionsPanelController
      * <p>
      * Returns the {@link CheckstyleOptionsPanel}.
      */
-    public JComponent getComponent(Lookup lookup) {
+    @Override
+    public JComponent getComponent (Lookup lookup) {
         if (panel == null) {
             panel = new CheckstyleOptionsPanel();
             panel.configFileBrowseButton.addActionListener(this);
@@ -160,21 +164,24 @@ public class CheckstyleOptionsController extends OptionsPanelController
     /**
      * {@inheritDoc}
      */
-    public HelpCtx getHelpCtx() {
+    @Override
+    public HelpCtx getHelpCtx () {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    @Override
+    public void addPropertyChangeListener (PropertyChangeListener listener) {
         // nothing to do for now
     }
 
     /**
      * {@inheritDoc}
      */
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
+    @Override
+    public void removePropertyChangeListener (PropertyChangeListener listener) {
         // nothing to do for now
     }
 
@@ -183,21 +190,22 @@ public class CheckstyleOptionsController extends OptionsPanelController
      * <p>
      * Handles the action events coming from the panel.
      */
-    public void actionPerformed(ActionEvent e) {
+    @Override
+    public void actionPerformed (ActionEvent e) {
         if (e.getSource() == panel.configFileBrowseButton) {
 
             openFileDialog(NbBundle.getMessage(CheckstyleOptionsController.class,
-                    "CheckstyleOptionsController.openConfigFileDialog"),
-                    CONFIG_FILE_FILTER, panel.configFileLocationField);
+                "CheckstyleOptionsController.openConfigFileDialog"),
+                CONFIG_FILE_FILTER, panel.configFileLocationField);
         } else if (e.getSource() == panel.propertyFileBrowseButton) {
 
             openFileDialog(NbBundle.getMessage(CheckstyleOptionsController.class,
-                    "CheckstyleOptionsController.openPropertyFileDialog"),
-                    PROPERTY_FILE_FILTER, panel.propertyFileLocationField);
+                "CheckstyleOptionsController.openPropertyFileDialog"),
+                PROPERTY_FILE_FILTER, panel.propertyFileLocationField);
         }
     }
 
-    private void openFileDialog(String title, FileFilter filter, JTextComponent component) {
+    private void openFileDialog (String title, FileFilter filter, JTextComponent component) {
         File oldFile = FileUtil.normalizeFile(new File(component.getText()));
 
         JFileChooser fileChooser = new JFileChooser(oldFile);
@@ -217,42 +225,48 @@ public class CheckstyleOptionsController extends OptionsPanelController
 
     private static class ConfigFileFilter extends FileFilter {
 
-        public boolean accept(File f) {
+        @Override
+        public boolean accept (File f) {
             return f.isDirectory() || f.getName().endsWith(".xml"); // NOI18N
         }
 
-        public String getDescription() {
+        @Override
+        public String getDescription () {
             return NbBundle.getMessage(CheckstyleOptionsController.class,
-                    "CheckstyleOptionsController.xmlFileFilter");
-            }
+                "CheckstyleOptionsController.xmlFileFilter");
+        }
     }
 
     private static class PropertyFileFilter extends FileFilter {
 
-        public boolean accept(File f) {
+        @Override
+        public boolean accept (File f) {
             return f.isDirectory() || f.getName().endsWith(".properties"); // NOI18N
         }
 
-        public String getDescription() {
+        @Override
+        public String getDescription () {
             return NbBundle.getMessage(CheckstyleOptionsController.class,
-                    "CheckstyleOptionsController.propertyFileFilter");
-            }
+                "CheckstyleOptionsController.propertyFileFilter");
+        }
     }
 
     private static class ClasspathProperty extends PropertySupport.ReadWrite<NbClassPath> {
 
         private List<File> classpath;
 
-        public ClasspathProperty(List<File> classpath) {
+        public ClasspathProperty (List<File> classpath) {
             super("classpath", NbClassPath.class, null, null); // NOI18N
             this.classpath = classpath;
         }
 
-        public NbClassPath getValue() {
+        @Override
+        public NbClassPath getValue () {
             return new NbClassPath(classpath.toArray(new File[classpath.size()]));
         }
 
-        public void setValue(NbClassPath val)  {
+        @Override
+        public void setValue (NbClassPath val) {
             String cp = val.getClassPath();
             if (cp.startsWith("\"") && cp.endsWith("\"")) { // NOI18N
                 cp = cp.substring(1, cp.length() - 1);
@@ -268,18 +282,20 @@ public class CheckstyleOptionsController extends OptionsPanelController
 
         private Properties properties;
 
-        public PropertiesProperty(Properties properties) {
+        public PropertiesProperty (Properties properties) {
             super("properties", Properties.class, null, null); // NOI18N
             this.properties = properties;
         }
 
-        public Properties getValue() {
+        @Override
+        public Properties getValue () {
             Properties p = new Properties();
             p.putAll(properties);
             return p;
         }
 
-        public void setValue(Properties val) {
+        @Override
+        public void setValue (Properties val) {
             properties.clear();
             properties.putAll(NbCollections.checkedMapByCopy(val, String.class, String.class, true));
         }

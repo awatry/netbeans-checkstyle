@@ -33,28 +33,31 @@ public class CheckstyleOptions extends AdvancedOption {
     /**
      * Constructs the options object.
      */
-    public CheckstyleOptions() {
+    public CheckstyleOptions () {
         super();
     }
 
     /**
      * {@inheritDoc}
      */
-    public OptionsPanelController create() {
+    @Override
+    public OptionsPanelController create () {
         return new CheckstyleOptionsController();
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getDisplayName() {
+    @Override
+    public String getDisplayName () {
         return NbBundle.getMessage(CheckstyleOptionsPanel.class, "CheckstyleOptions.displayName");
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getTooltip() {
+    @Override
+    public String getTooltip () {
         return NbBundle.getMessage(CheckstyleOptionsPanel.class, "CheckstyleOptions.tooltip");
     }
 

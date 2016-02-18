@@ -29,19 +29,19 @@ import org.openide.filesystems.FileUtil;
  */
 public class CheckstyleTaskFactoryTest extends TestCase {
 
-    public CheckstyleTaskFactoryTest(String name) {
+    public CheckstyleTaskFactoryTest (String name) {
         super(name);
     }
 
-    public void testFactory() {
+    public void testFactory () {
         CheckstyleTaskFactory factory = new CheckstyleTaskFactory();
 
         CancellableTask task1 = factory.createTask(FileUtil.toFileObject(
-                FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
+            FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
         assertNotNull(task1);
 
         CancellableTask task2 = factory.createTask(FileUtil.toFileObject(
-                FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
+            FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
         assertNotNull(task2);
 
         assertNotSame(task1, task2);

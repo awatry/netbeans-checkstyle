@@ -110,7 +110,6 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
                 return;
             }
 
-
             List<CheckstyleAnnotation> results = run(fileObject, file, editor.openDocument(), config);
             if (!isCanceled()) {
                 setAnnotations(fileObject, results);
@@ -131,7 +130,8 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
     }
 
     private List<CheckstyleAnnotation> run (final FileObject fileObject, final File file,
-        final StyledDocument document, final Configuration config) throws CheckstyleException {
+        final StyledDocument document, final Configuration config) throws CheckstyleException
+    {
 
         final CollectingListener listener = new CollectingListener(config.getSeverity(),
             document);
