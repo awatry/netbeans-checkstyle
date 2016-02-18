@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>Screenshots</title>
+        <author email="hejlp@seznam.cz">Petr Hejl</author>    
+    </properties> 
+    <body> 
+        <section name="Screenshots">
+
+            <p> 
+                Displaying the warning about non-final parameter.
+            </p>
+            
+            <img class="centered_border" src="images/annotation1.png" alt="Warning about non-final parameter"
+                width="720" height="180" border="1"/>
+            
+            <p>
+                Displaying the warning about the inline conditional.
+            </p>
+            
+            <img class="centered_border" src="images/annotation2.png" alt="Warning about inline conditional"
+                width="720" height="100"/>
+
+            <p>
+                Options dialog with custom config file.
+            </p>
+            
+            <img class="centered" src="images/options.png" alt="Options dialog"
+                width="1054" height="651"/>
+            
+        </section>
+    </body>
+</document>

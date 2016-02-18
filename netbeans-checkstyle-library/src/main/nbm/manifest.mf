@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+OpenIDE-Module: cz.sickboy.netbeans.libs.checkstyle/4
+OpenIDE-Module-Localizing-Bundle: cz/sickboy/netbeans/libs/checkstyle/Bundle.properties
+OpenIDE-Module-Specification-Version: 4.6.15
+OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
+OpenIDE-Module-Public-Packages: com.puppycrawl.tools.checkstyle.*,
+ com.puppycrawl.tools.checkstyle.api.*,
+ com.puppycrawl.tools.checkstyle.checks.*,
+ com.puppycrawl.tools.checkstyle.checks.blocks.*,
+ com.puppycrawl.tools.checkstyle.checks.coding.*,
+ com.puppycrawl.tools.checkstyle.checks.design.*,
+ com.puppycrawl.tools.checkstyle.checks.duplicates.*,
+ com.puppycrawl.tools.checkstyle.checks.header.*,
+ com.puppycrawl.tools.checkstyle.checks.imports.*,
+ com.puppycrawl.tools.checkstyle.checks.indentation.*,
+ com.puppycrawl.tools.checkstyle.checks.javadoc.*,
+ com.puppycrawl.tools.checkstyle.checks.metrics.*,
+ com.puppycrawl.tools.checkstyle.checks.modifier.*,
+ com.puppycrawl.tools.checkstyle.checks.naming.*,
+ com.puppycrawl.tools.checkstyle.checks.sizes.*,
+ com.puppycrawl.tools.checkstyle.checks.whitespace.*,
+ com.puppycrawl.tools.checkstyle.doclets.*,
+ com.puppycrawl.tools.checkstyle.filters.*,
+ com.puppycrawl.tools.checkstyle.grammars.*,
+ com.puppycrawl.tools.checkstyle.gui.*
+OpenIDE-Module-Java-Dependencies: Java > 1.7
+

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cz.sickboy</groupId>
+    <artifactId>netbeans-checkstyle</artifactId>
+    <packaging>pom</packaging>
+    <version>4.1.0</version>
+    <name>netbeans-checkstyle</name>
+    <url>http://www.sickboy.cz/checkstyle</url>
+    <description>
+        Checkstyle Beans project contains the set of plugins
+        needed for annotation of the code that does not match the defined rules.
+        It works inside the editor, displaying the results as soon as the edited
+        file is saved.
+    </description>
+    
+    <licenses>
+        <license>
+            <name>GNU LGPL, Version 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>sickboy</id>
+            <name>Petr Hejl</name>
+            <email>hejlp@seznam.cz</email>
+            <roles>
+                <role>Project Manager</role>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-java</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.7</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <inherited>false</inherited>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <version>2.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <fileName>autoupdate-3.xml</fileName>
+                    <nbmBuildDir>${project.reporting.outputDirectory}/autoupdate</nbmBuildDir>
+                    <distBase>http://www.sickboy.cz/checkstyle/autoupdate</distBase>
+                </configuration>                
+            </plugin>
+            
+            <plugin>
+                <inherited>false</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.2</version>
+                            <reports>
+                                <report>project-team</report>
+                                <report>license</report>
+                                <!-- <report>scm</report> -->
+                            </reports>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-changes-plugin</artifactId>
+                            <version>2.2</version>
+                            <reportSets>
+                                <reportSet>
+                                    <reports>
+                                        <report>changes-report</report>
+                                    </reports>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <inherited>false</inherited>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/assembly/bin.xml</descriptor>
+                        <descriptor>src/assembly/src.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <scm>
+        <connection>scm:hg:https://bitbucket.org/phejl/checkstyle-beans</connection>
+        <url>https://bitbucket.org/phejl/checkstyle-beans</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>repository</id>
+            <url>scpexe://sickboy.cz/home/sickboy/www/repository</url>
+        </repository>
+        <site>
+            <id>website</id>
+            <url>scpexe://sickboy.cz/home/sickboy/www/checkstyle</url>
+        </site>
+    </distributionManagement>
+    
+    <modules>
+        <module>netbeans-checkstyle-library</module>
+        <module>netbeans-checkstyle-plugin</module>
+        <module>netbeans-checkstyle-extra</module>
+    </modules>
+    <repositories>
+        <repository>
+            <id>netbeans</id>
+            <name>NetBeans artifacts</name>
+            <url>http://bits.netbeans.org/maven2/</url>
+        </repository>
+    </repositories>
+    
+</project>

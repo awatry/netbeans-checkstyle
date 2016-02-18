@@ -1,0 +1,17 @@
+<nbm>
+    <moduleType>normal</moduleType>
+    <codeNameBase>cz.sickboy.netbeans.checkstyle</codeNameBase>
+    <cluster>checkstyle</cluster>
+    <author>Petr Hejl</author>
+    <manifest>src/main/nbm/manifest.mf</manifest>
+    <distributionUrl>http://www.sickboy.cz/checkstyle</distributionUrl>
+    <licenseName>GNU LGPL, Version 2.1</licenseName>
+    <licenseFile>LICENSE.txt</licenseFile>
+    <dependencies>
+        <dependency>
+            <id>cz.sickboy:netbeans-checkstyle-library</id>
+            <type>spec</type>
+            <explicitValue>cz.sickboy.netbeans.libs.checkstyle/4 &gt; 4.6.7</explicitValue>
+        </dependency>
+    </dependencies>
+</nbm>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>About Project</title>
+        <author email="hejlp@seznam.cz">Petr Hejl</author>    
+    </properties> 
+    <body> 
+        <section name="About Project">
+            <p> 
+                Checkstyle Beans project contains the set of
+                <a href="https://www.netbeans.org">NetBeans</a> modules
+                needed for annotation of the code that does not match
+                the defined <a href="http://checkstyle.sourceforge.net/">Checkstyle</a>
+                rules. It works inside the editor, displaying the results
+                as soon as the edited file is saved.
+            </p>
+
+            <p>
+                See the <a href="changes-report.html">Changes Report</a> for
+                the complete overview of recent changes.
+            </p>
+        </section>
+
+        <section name="Acknowledgment">
+            <p>
+                The plugin uses the <a href="http://checkstyle.sourceforge.net/">Checkstyle</a>
+                library developed under GNU Lesser General Public License,
+                Version 2.1. It also uses the icon from the
+                <a href="http://www.famfamfam.com/lab/icons/silk/">Silk Icons</a>
+                package created by Mark James under Creative Commons Attribution
+                2.5 License.
+            </p>
+        </section>
+    </body>
+</document>

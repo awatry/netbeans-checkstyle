@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
+    <parent>
+        <groupId>cz.sickboy</groupId>
+        <artifactId>netbeans-checkstyle</artifactId>
+        <version>4.1.0</version>
+    </parent>    
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>netbeans-checkstyle-extra</artifactId>
+    <packaging>jar</packaging>
+    <version>4.1.0</version>
+    <name>netbeans-checkstyle-extra</name>
+    <url>http://www.sickboy.cz/checkstyle</url>
+    <description>Checkstyle Beans Extra is small set of useful NetBeans related checks.</description>
+
+    <licenses>
+        <license>
+            <name>GNU LGPL, Version 2.1</name>
+            <url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>6.15</version>
+        </dependency>
+        
+        <dependency>
+            <artifactId>guava</artifactId>
+            <groupId>com.google.guava</groupId>
+            <type>jar</type>
+            <version>18.0</version>
+        </dependency> 
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <distributionManagement>
+        <repository>
+            <id>repository</id>
+            <url>scpexe://sickboy.cz/home/sickboy/www/repository</url>
+        </repository>
+        <site>
+            <id>website</id>
+            <!-- we use dummy because we don't want the site deployed -->
+            <url>file://${java.io.tmpdir}/checkstyle/netbeans-checkstyle-extra</url>
+        </site>
+    </distributionManagement>    
+</project>

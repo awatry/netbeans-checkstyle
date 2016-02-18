@@ -1,0 +1,25 @@
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+img.centered_border {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;    
+}
+
+/* This is fix for sections in download page :( */
+/*body, td, select, input, li{
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: small;
+}*/
+
+div.normal-hack, li, tr.b, tr.a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: small;
+}

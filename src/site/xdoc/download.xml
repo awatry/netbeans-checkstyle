@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document> 
+    <properties> 
+        <title>Download</title> 
+        <author email="hejlp@seznam.cz">Petr Hejl</author>
+    </properties> 
+    <body> 
+
+        <section name="Download"> 
+            <p> 
+                Here you can download the latest version of Checkstyle Beans plugin.
+            </p>
+            <p>
+                After the installation the plugin should start working immediately.
+                When you open a new source file or save an existing one you should
+                see the Checkstyle annotations.
+            </p>
+
+            <p>
+                See the <a href="changes-report.html">Changes Report</a> for
+                the complete overview of recent changes.
+            </p>
+        </section>
+
+        <section name="Online Installation">
+            <p>
+                You can easily install the plugin from NetBeans by configuring
+                the following update center:
+            </p>
+            <p>
+                <ul>
+                    <li><a href="http://www.sickboy.cz/checkstyle/autoupdate/autoupdate-3.xml">
+                    http://www.sickboy.cz/checkstyle/autoupdate/autoupdate-3.xml</a></li>
+                </ul>
+            </p>
+        </section>
+
+        <section name="Offline Installation">
+
+            <ul>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-bin.zip">netbeans-checkstyle-4.1.0-bin.zip</a></li>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-bin.tar.bz2">netbeans-checkstyle-4.1.0-bin.tar.bz2</a></li>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-bin.tar.gz">netbeans-checkstyle-4.1.0-bin.tar.gz</a></li>
+            </ul>
+
+        </section>
+
+        <section name="Source Code">
+
+            <ul>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-src.zip">netbeans-checkstyle-4.1.0-src.zip</a></li>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-src.tar.bz2">netbeans-checkstyle-4.1.0-src.tar.bz2</a></li>
+                <li><a href="http://www.sickboy.cz/repository/cz/sickboy/netbeans-checkstyle/4.1.0/netbeans-checkstyle-4.1.0-src.tar.gz">netbeans-checkstyle-4.1.0-src.tar.gz</a></li>
+            </ul>
+
+        </section>                
+    </body>
+</document>
