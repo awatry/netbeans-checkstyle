@@ -47,6 +47,8 @@ public class CheckstyleOptionsPanel extends javax.swing.JPanel {
         severityLabel = new javax.swing.JLabel();
         ignoredPathsLabel = new javax.swing.JLabel();
         ignoredPathsScrollPane = new javax.swing.JScrollPane();
+        checkedPathsLabel = new javax.swing.JLabel();
+        ignoredPathsScrollPane1 = new javax.swing.JScrollPane();
 
         classpathPanel.setLayout(new java.awt.BorderLayout());
 
@@ -83,35 +85,52 @@ public class CheckstyleOptionsPanel extends javax.swing.JPanel {
         ignoredPathsScrollPane.setViewportView(ignoredPathsArea);
         ignoredPathsArea.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CheckstyleOptionsPanel.class, "CheckstyleOptionsPanel.ignoredPathsArea.AccessibleContext.accessibleName")); // NOI18N
 
+        checkedPathsLabel.setLabelFor(checkedPathsArea);
+        org.openide.awt.Mnemonics.setLocalizedText(checkedPathsLabel, org.openide.util.NbBundle.getMessage(CheckstyleOptionsPanel.class, "CheckstyleOptionsPanel.checkedPathsLabel.text")); // NOI18N
+
+        ignoredPathsScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ignoredPathsScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        checkedPathsArea.setColumns(20);
+        checkedPathsArea.setLineWrap(true);
+        checkedPathsArea.setRows(2);
+        ignoredPathsScrollPane1.setViewportView(checkedPathsArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(severityLabel)
-                    .addComponent(configFileLabel)
-                    .addComponent(propertyFileLabel)
-                    .addComponent(propertiesLabel)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ignoredPathsLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(classpathLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(classpathLabel)
+                        .addGap(84, 84, 84)
+                        .addComponent(classpathPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(severityLabel)
+                            .addComponent(configFileLabel)
+                            .addComponent(propertyFileLabel)
+                            .addComponent(propertiesLabel)
+                            .addComponent(ignoredPathsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(checkedPathsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(severityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 206, Short.MAX_VALUE))
-                            .addComponent(configFileLocationField)
-                            .addComponent(propertyFileLocationField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(configFileBrowseButton)
-                            .addComponent(propertyFileBrowseButton)))
-                    .addComponent(classpathPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(propertiesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ignoredPathsScrollPane)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(severityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 267, Short.MAX_VALUE))
+                                    .addComponent(configFileLocationField)
+                                    .addComponent(propertyFileLocationField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(configFileBrowseButton)
+                                    .addComponent(propertyFileBrowseButton)))
+                            .addComponent(propertiesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ignoredPathsScrollPane)
+                            .addComponent(ignoredPathsScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,12 +156,15 @@ public class CheckstyleOptionsPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ignoredPathsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ignoredPathsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ignoredPathsScrollPane1)
+                    .addComponent(checkedPathsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classpathPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(classpathLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(classpathPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(classpathLabel))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         configFileLocationField.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CheckstyleOptionsPanel.class, "CheckstyleOptionsPanel.configFileLocationField.AccessibleContext.accessibleName")); // NOI18N
@@ -152,6 +174,8 @@ public class CheckstyleOptionsPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    final javax.swing.JTextArea checkedPathsArea = new javax.swing.JTextArea();
+    private javax.swing.JLabel checkedPathsLabel;
     final javax.swing.JLabel classpathLabel = new javax.swing.JLabel();
     final javax.swing.JPanel classpathPanel = new javax.swing.JPanel();
     final javax.swing.JButton configFileBrowseButton = new javax.swing.JButton();
@@ -160,6 +184,7 @@ public class CheckstyleOptionsPanel extends javax.swing.JPanel {
     final javax.swing.JTextArea ignoredPathsArea = new javax.swing.JTextArea();
     private javax.swing.JLabel ignoredPathsLabel;
     private javax.swing.JScrollPane ignoredPathsScrollPane;
+    private javax.swing.JScrollPane ignoredPathsScrollPane1;
     final javax.swing.JLabel propertiesLabel = new javax.swing.JLabel();
     final javax.swing.JPanel propertiesPanel = new javax.swing.JPanel();
     final javax.swing.JButton propertyFileBrowseButton = new javax.swing.JButton();

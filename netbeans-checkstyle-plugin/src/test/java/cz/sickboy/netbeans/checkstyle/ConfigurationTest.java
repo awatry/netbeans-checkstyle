@@ -36,42 +36,57 @@ public class ConfigurationTest extends TestCase {
     }
 
     public void testConstructor() {
-        Configuration config = new Configuration(null, null, null, null);
+        Configuration config = new Configuration(null, null, null, null, null);
         assertNull(config.getSeverity());
         assertNull(config.getCheckstyleClassLoader());
         assertNull(config.getCheckstyleConfiguration());
         assertNull(config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
 
-        config = new Configuration(null, TEST_CONFIGURATION, null, null);
+        config = new Configuration(null, TEST_CONFIGURATION, null, null, null);
         assertNull(config.getSeverity());
         assertEquals(TEST_CONFIGURATION, config.getCheckstyleConfiguration());
         assertNull(config.getCheckstyleClassLoader());
         assertNull(config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
 
-        config = new Configuration(null, null, getClass().getClassLoader(), null);
+        config = new Configuration(null, null, getClass().getClassLoader(), null, null);
         assertNull(config.getSeverity());
         assertNull(config.getCheckstyleConfiguration());
         assertEquals(getClass().getClassLoader(), config.getCheckstyleClassLoader());
         assertNull(config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
 
-        config = new Configuration(null, TEST_CONFIGURATION, getClass().getClassLoader(), null);
+        config = new Configuration(null, TEST_CONFIGURATION, getClass().getClassLoader(), null, null);
         assertNull(config.getSeverity());
         assertEquals(TEST_CONFIGURATION, config.getCheckstyleConfiguration());
         assertEquals(getClass().getClassLoader(), config.getCheckstyleClassLoader());
         assertNull(config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
 
-        config = new Configuration(Severity.ERROR, TEST_CONFIGURATION, getClass().getClassLoader(), null);
+        config = new Configuration(Severity.ERROR, TEST_CONFIGURATION, getClass().getClassLoader(), null, null);
         assertEquals(Severity.ERROR, config.getSeverity());
         assertEquals(TEST_CONFIGURATION, config.getCheckstyleConfiguration());
         assertEquals(getClass().getClassLoader(), config.getCheckstyleClassLoader());
         assertNull(config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
 
         Pattern ignored = Pattern.compile(".*");
-        config = new Configuration(Severity.ERROR, TEST_CONFIGURATION, getClass().getClassLoader(), ignored);
+        config = new Configuration(Severity.ERROR, TEST_CONFIGURATION, getClass().getClassLoader(), ignored, null);
         assertEquals(Severity.ERROR, config.getSeverity());
         assertEquals(TEST_CONFIGURATION, config.getCheckstyleConfiguration());
         assertEquals(getClass().getClassLoader(), config.getCheckstyleClassLoader());
         assertEquals(ignored, config.getIgnoredPathsPattern());
+        assertNull(config.getCheckedPathsPattern());
+
+        Pattern checked = Pattern.compile(".*");
+        config = new Configuration(Severity.ERROR, TEST_CONFIGURATION, getClass().getClassLoader(), null, checked);
+        assertEquals(Severity.ERROR, config.getSeverity());
+        assertEquals(TEST_CONFIGURATION, config.getCheckstyleConfiguration());
+        assertEquals(getClass().getClassLoader(), config.getCheckstyleClassLoader());
+        assertNull(config.getIgnoredPathsPattern());
+        assertEquals(checked, config.getCheckedPathsPattern());
+
     }
 
     private static class TestConfiguration implements com.puppycrawl.tools.checkstyle.api.Configuration {

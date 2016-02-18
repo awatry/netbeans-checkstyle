@@ -76,7 +76,7 @@ public class ConfigurationLoaderTest extends TestCase {
         assertNotNull(config);
 
         CheckstyleSettings.Values snapshot = new CheckstyleSettings.Values(
-                Severity.ERROR, null, null, Arrays.asList(new File[]{new File("test")}), null, null);
+            Severity.ERROR, null, null, Arrays.asList(new File[]{new File("test")}), null, null, null);
         settings.setValues(snapshot);
 
         Configuration refreshedConfig = loader.getConfiguration();
@@ -87,7 +87,7 @@ public class ConfigurationLoaderTest extends TestCase {
     public void testDefault() throws CheckstyleException {
         ConfigurationLoader loader = ConfigurationLoader.getDefault();
         CheckstyleSettings.Values snapshot = new CheckstyleSettings.Values(
-                Severity.ERROR, "", null, null, null, null);
+            Severity.ERROR, "", null, null, null, null, null);
 
         CheckstyleSettings.getDefault().setValues(snapshot);
 

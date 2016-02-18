@@ -100,6 +100,8 @@ public class CheckstyleOptionsController extends OptionsPanelController
 
         panel.ignoredPathsArea.setText(values.getIgnoredPathsPattern());
 
+        panel.checkedPathsArea.setText(values.getCheckedPathsPattern());
+
         initialized = true;
     }
 
@@ -112,8 +114,10 @@ public class CheckstyleOptionsController extends OptionsPanelController
         }
 
         CheckstyleSettings.Values values = new CheckstyleSettings.Values(
-                (Severity) panel.severityComboBox.getSelectedItem(), panel.configFileLocationField.getText(),
-                panel.propertyFileLocationField.getText(), classpath, properties, panel.ignoredPathsArea.getText());
+            (Severity) panel.severityComboBox.getSelectedItem(), panel.configFileLocationField.getText(),
+            panel.propertyFileLocationField.getText(), classpath, properties, panel.ignoredPathsArea.getText(),
+            panel.checkedPathsArea.getText()
+        );
 
         CheckstyleSettings.getDefault().setValues(values);
     }

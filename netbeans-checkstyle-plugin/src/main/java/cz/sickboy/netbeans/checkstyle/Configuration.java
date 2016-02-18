@@ -34,13 +34,20 @@ public final class Configuration {
 
     private final Pattern ignoredPathsPattern;
 
-    public Configuration(Severity severity,
-            com.puppycrawl.tools.checkstyle.api.Configuration configuration,
-            ClassLoader classLoader, Pattern ignoredPathsPattern) {
+    private final Pattern checkedPathsPattern;
+
+    public Configuration (
+        Severity severity,
+        com.puppycrawl.tools.checkstyle.api.Configuration configuration,
+        ClassLoader classLoader,
+        Pattern ignoredPathsPattern,
+        Pattern checkedPathsPattern
+    ) {
         this.severity = severity;
         this.configuration = configuration;
         this.classLoader = classLoader;
         this.ignoredPathsPattern = ignoredPathsPattern;
+        this.checkedPathsPattern = checkedPathsPattern;
     }
 
     public com.puppycrawl.tools.checkstyle.api.Configuration getCheckstyleConfiguration() {
@@ -59,4 +66,7 @@ public final class Configuration {
         return ignoredPathsPattern;
     }
 
+    public Pattern getCheckedPathsPattern () {
+        return checkedPathsPattern;
+    }
 }

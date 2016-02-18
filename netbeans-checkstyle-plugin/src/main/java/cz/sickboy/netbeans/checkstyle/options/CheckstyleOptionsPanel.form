@@ -17,36 +17,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="severityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="configFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="propertyFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="propertiesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ignoredPathsLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="classpathPanel" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="severityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="configFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="propertyFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="propertiesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ignoredPathsLabel" max="32767" attributes="0"/>
+                          <Component id="checkedPathsLabel" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="severityComboBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="severityComboBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="267" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="configFileLocationField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="propertyFileLocationField" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="configFileBrowseButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="propertyFileBrowseButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="configFileLocationField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="propertyFileLocationField" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="configFileBrowseButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="propertyFileBrowseButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="propertiesPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ignoredPathsScrollPane" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ignoredPathsScrollPane1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="classpathPanel" max="32767" attributes="0"/>
-                  <Component id="propertiesPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="ignoredPathsScrollPane" alignment="0" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -80,14 +88,17 @@
                   <Component id="ignoredPathsScrollPane" min="-2" max="-2" attributes="0"/>
                   <Component id="ignoredPathsLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="classpathPanel" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="ignoredPathsScrollPane1" max="32767" attributes="0"/>
+                  <Component id="checkedPathsLabel" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="classpathPanel" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -260,6 +271,42 @@
               <ResourceString bundle="cz/sickboy/netbeans/checkstyle/options/Bundle.properties" key="CheckstyleOptionsPanel.ignoredPathsArea.AccessibleContext.accessibleName" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </AccessibilityProperties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="16"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="checkedPathsLabel">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="checkedPathsArea"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="cz/sickboy/netbeans/checkstyle/options/Bundle.properties" key="CheckstyleOptionsPanel.checkedPathsLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="generateMnemonicsCode" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="ignoredPathsScrollPane1">
+      <Properties>
+        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+        <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="checkedPathsArea">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="2"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="16"/>
           </AuxValues>

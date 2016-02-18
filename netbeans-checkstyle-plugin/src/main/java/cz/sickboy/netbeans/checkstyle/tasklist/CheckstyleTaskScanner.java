@@ -33,7 +33,6 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import org.netbeans.spi.tasklist.FileTaskScanner;
@@ -89,6 +88,11 @@ public class CheckstyleTaskScanner extends FileTaskScanner implements PropertyCh
 
             Pattern ignored = config.getIgnoredPathsPattern();
             if (ignored != null && ignored.matcher(file.getAbsolutePath()).matches()) {
+                return Collections.emptyList();
+            }
+
+            Pattern checked = config.getCheckedPathsPattern();
+            if (checked != null && !checked.matcher(file.getAbsolutePath()).matches()) {
                 return Collections.emptyList();
             }
 

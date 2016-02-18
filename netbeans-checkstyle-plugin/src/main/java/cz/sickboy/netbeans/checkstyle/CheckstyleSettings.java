@@ -69,6 +69,9 @@ public final class CheckstyleSettings {
     static final String PROP_IGNORED_PATHS_PATTERN =
         "cz.sickboy.netbeans.checkstyle.ignoredPathsPattern"; // NOI18N
 
+    static final String PROP_CHECKED_PATHS_PATTERN =
+        "cz.sickboy.netbeans.checkstyle.checkedPathsPattern"; // NOI18N
+
     private static final Logger LOGGER = Logger.getLogger(CheckstyleSettings.class.getName());
 
     private static CheckstyleSettings instance;
@@ -113,6 +116,7 @@ public final class CheckstyleSettings {
             setCustomClasspath(values.getCustomClasspath(), events);
             setCustomProperties(values.getCustomProperties(), events);
             setIgnoredPathsPattern(values.getIgnoredPathsPattern(), events);
+            setCheckedPathsPattern(values.getCheckedPathsPattern(), events);
         }
 
         for (PropertyChangeEvent event : events) {
@@ -125,7 +129,7 @@ public final class CheckstyleSettings {
             updateProperties();
             return new Values(getCustomSeverity(), getCustomConfigFile(),
                     getCustomPropertyFile(), getCustomClasspath(),
-                    getCustomProperties(), getIgnoredPathsPattern());
+                getCustomProperties(), getIgnoredPathsPattern(), getCheckedPathsPattern());
         }
     }
 
@@ -326,6 +330,26 @@ public final class CheckstyleSettings {
         return trimToNull(getPreferences().get(PROP_IGNORED_PATHS_PATTERN, null));
     }
 
+    private void setCheckedPathsPattern (String pattern, List<PropertyChangeEvent> events) {
+        String oldValue;
+        synchronized (this) {
+            oldValue = getCheckedPathsPattern();
+            if (pattern == null) {
+                getPreferences().remove(PROP_CHECKED_PATHS_PATTERN);
+            } else {
+                getPreferences().put(PROP_CHECKED_PATHS_PATTERN, pattern);
+            }
+        }
+
+        if (oldValue != pattern && (oldValue == null || !oldValue.equals(pattern))) {
+            events.add(new PropertyChangeEvent(this, PROP_CHECKED_PATHS_PATTERN, oldValue, pattern));
+        }
+    }
+
+    private synchronized String getCheckedPathsPattern () {
+        return trimToNull(getPreferences().get(PROP_CHECKED_PATHS_PATTERN, null));
+    }
+
     private static boolean isEqual(List<File> oldClasspath, List<File> newClasspath) {
         if (oldClasspath == newClasspath) {
             return true;
@@ -393,9 +417,11 @@ public final class CheckstyleSettings {
 
         private final String ignoredPathsPattern;
 
+        private final String checkedPathsPattern;
+
         public Values(Severity customSeverity, String customConfigFile,
                 String customPropetyFile, List<File> customClasspath,
-                Properties customProperties, String ignoredPathsPattern) {
+            Properties customProperties, String ignoredPathsPattern, String checkedPathsPattern) {
 
             this.customSeverity = customSeverity;
             this.customConfigFile = customConfigFile;
@@ -411,6 +437,8 @@ public final class CheckstyleSettings {
                 this.customProperties.putAll(customProperties);
             }
             this.ignoredPathsPattern = ignoredPathsPattern;
+
+            this.checkedPathsPattern = checkedPathsPattern;
         }
 
         public Severity getCustomSeverity() {
@@ -435,6 +463,10 @@ public final class CheckstyleSettings {
 
         public String getIgnoredPathsPattern() {
             return ignoredPathsPattern;
+        }
+
+        public String getCheckedPathsPattern () {
+            return checkedPathsPattern;
         }
     }
 }

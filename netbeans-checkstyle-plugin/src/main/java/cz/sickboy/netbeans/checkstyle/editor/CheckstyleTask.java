@@ -66,18 +66,20 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
 
     private boolean cancelled;
 
-    public CheckstyleTask(FileObject fileObject) {
+    public CheckstyleTask (FileObject fileObject) {
         this.fileObject = fileObject;
     }
 
-    public synchronized void cancel() {
+    @Override
+    public synchronized void cancel () {
         if (running != null) {
             running.cancel(true);
         }
         cancelled = true;
     }
 
-    public void run(CompilationInfo info) throws Exception {
+    @Override
+    public void run (CompilationInfo info) throws Exception {
         init();
 
         DataObject data = DataObject.find(fileObject);
@@ -103,6 +105,12 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
                 return;
             }
 
+            Pattern checked = config.getCheckedPathsPattern();
+            if (checked != null && !checked.matcher(file.getAbsolutePath()).matches()) {
+                return;
+            }
+
+
             List<CheckstyleAnnotation> results = run(fileObject, file, editor.openDocument(), config);
             if (!isCanceled()) {
                 setAnnotations(fileObject, results);
@@ -112,20 +120,21 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
         }
     }
 
-    synchronized void init() {
+    synchronized void init () {
         running = null;
         cancelled = false;
     }
 
-    public synchronized boolean isCanceled() {
+    @Override
+    public synchronized boolean isCanceled () {
         return cancelled;
     }
 
-    private List<CheckstyleAnnotation> run(final FileObject fileObject, final File file,
-            final StyledDocument document, final Configuration config) throws CheckstyleException {
+    private List<CheckstyleAnnotation> run (final FileObject fileObject, final File file,
+        final StyledDocument document, final Configuration config) throws CheckstyleException {
 
         final CollectingListener listener = new CollectingListener(config.getSeverity(),
-                document);
+            document);
 
         Future<?> future;
         synchronized (this) {
@@ -136,7 +145,7 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
             running = THREAD_POOL.submit(new Callable<Void>() {
 
                 @Override
-                public Void call() throws Exception {
+                public Void call () throws Exception {
                     ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
                     try {
                         Thread.currentThread().setContextClassLoader(config.getCheckstyleClassLoader());
@@ -186,7 +195,7 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
         return listener.getResults();
     }
 
-    private static void setAnnotations(FileObject fileObject, List<CheckstyleAnnotation> annotations) {
+    private static void setAnnotations (FileObject fileObject, List<CheckstyleAnnotation> annotations) {
         CheckstyleAnnotationContainer container = CheckstyleAnnotationContainer.getInstance(fileObject);
         if (container != null) {
             container.setAnnotations(annotations);
@@ -195,12 +204,12 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
         }
     }
 
-    private static Position getPosition(final StyledDocument document, final int lineNumber) {
-        final AtomicReference<Position> ref = new AtomicReference<Position>();
+    private static Position getPosition (final StyledDocument document, final int lineNumber) {
+        final AtomicReference<Position> ref = new AtomicReference<>();
         document.render(new Runnable() {
 
             @Override
-            public void run() {
+            public void run () {
                 int offset = NbDocument.findLineOffset(document, lineNumber);
                 if (offset < 0 || offset >= document.getLength()) {
                     return;
@@ -221,17 +230,17 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
 
         private final StyledDocument document;
 
-        public CollectingListener(Severity minimalSeverity, StyledDocument document) {
+        public CollectingListener (Severity minimalSeverity, StyledDocument document) {
             super(minimalSeverity);
             this.document = document;
         }
 
         @Override
-        public CheckstyleAnnotation createResult(AuditEvent evt) {
+        public CheckstyleAnnotation createResult (AuditEvent evt) {
             Position position = getPosition(document, evt.getLine() - 1);
             if (position != null) {
                 return new CheckstyleAnnotation(document, position,
-                        evt.getMessage(), evt.getSeverityLevel());
+                    evt.getMessage(), evt.getSeverityLevel());
             }
             return null;
         }

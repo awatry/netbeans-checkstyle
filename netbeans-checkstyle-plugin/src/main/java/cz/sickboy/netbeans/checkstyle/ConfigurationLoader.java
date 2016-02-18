@@ -144,9 +144,19 @@ public final class ConfigurationLoader implements PropertyChangeListener {
                 }
             }
 
+            Pattern checkedPathsPattern = null;
+            String checkedPatternValue = values.getCheckedPathsPattern();
+            if (checkedPatternValue != null) {
+                try {
+                    checkedPathsPattern = Pattern.compile(checkedPatternValue);
+                } catch (PatternSyntaxException ex) {
+                    LOGGER.log(Level.INFO, null, ex);
+                }
+            }
+
             configuration = new Configuration(values.getCustomSeverity(),
                     loadConfiguration(values.getCustomConfigFile(), fresh),
-                    createClassLoader(values.getCustomClasspath()), ignoredPathsPattern);
+                createClassLoader(values.getCustomClasspath()), ignoredPathsPattern, checkedPathsPattern);
         } catch (CheckstyleException ex) {
             exception = ex;
             LOGGER.log(Level.INFO, null, ex);

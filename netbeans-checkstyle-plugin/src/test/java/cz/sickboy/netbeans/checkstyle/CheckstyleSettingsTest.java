@@ -195,11 +195,40 @@ public class CheckstyleSettingsTest extends TestCase {
         setIgnoredPathsPattern(settings, "test");
     }
 
+    public void testCheckedPathsPattern () {
+        CheckstyleSettings settings = CheckstyleSettings.getDefault();
+        assertNull(settings.getValues().getCheckedPathsPattern());
+
+        TestListener listener = new TestListener(settings,
+            CheckstyleSettings.PROP_CHECKED_PATHS_PATTERN, null, "test");
+        settings.addPropertyChangeListener(listener);
+        try {
+            setCheckedPathsPattern(settings, "test");
+            assertEquals("test", settings.getValues().getCheckedPathsPattern());
+        } finally {
+            settings.removePropertyChangeListener(listener);
+        }
+
+        listener = new TestListener(settings,
+            CheckstyleSettings.PROP_CHECKED_PATHS_PATTERN, "test", null);
+        settings.addPropertyChangeListener(listener);
+        try {
+            setCheckedPathsPattern(settings, null);
+            assertNull(settings.getValues().getCheckedPathsPattern());
+        } finally {
+            settings.removePropertyChangeListener(listener);
+        }
+
+        // check listener is not invoked
+        setCheckedPathsPattern(settings, "test");
+    }
+
     private static void setCustomConfigFile(CheckstyleSettings settings, String file) {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
                 file, values.getCustomPropertyFile(),
-                values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern());
+            values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern(), values.
+            getCheckedPathsPattern());
         settings.setValues(values);
     }
 
@@ -207,7 +236,8 @@ public class CheckstyleSettingsTest extends TestCase {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
                 values.getCustomConfigFile(), file,
-                values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern());
+            values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern(), values.
+            getCheckedPathsPattern());
         settings.setValues(values);
     }
 
@@ -215,7 +245,7 @@ public class CheckstyleSettingsTest extends TestCase {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
                 values.getCustomConfigFile(), values.getCustomPropertyFile(),
-                classpath, values.getCustomProperties(), values.getIgnoredPathsPattern());
+            classpath, values.getCustomProperties(), values.getIgnoredPathsPattern(), values.getCheckedPathsPattern());
         settings.setValues(values);
     }
 
@@ -223,7 +253,7 @@ public class CheckstyleSettingsTest extends TestCase {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
                 values.getCustomConfigFile(), values.getCustomPropertyFile(),
-                values.getCustomClasspath(), properties, values.getIgnoredPathsPattern());
+            values.getCustomClasspath(), properties, values.getIgnoredPathsPattern(), values.getCheckedPathsPattern());
         settings.setValues(values);
     }
 
@@ -231,7 +261,15 @@ public class CheckstyleSettingsTest extends TestCase {
         CheckstyleSettings.Values values = settings.getValues();
         values = new CheckstyleSettings.Values(Severity.IGNORE,
                 values.getCustomConfigFile(), values.getCustomPropertyFile(),
-                values.getCustomClasspath(), values.getCustomProperties(), pattern);
+            values.getCustomClasspath(), values.getCustomProperties(), pattern, values.getCheckedPathsPattern());
+        settings.setValues(values);
+    }
+
+    private static void setCheckedPathsPattern (CheckstyleSettings settings, String pattern) {
+        CheckstyleSettings.Values values = settings.getValues();
+        values = new CheckstyleSettings.Values(Severity.IGNORE,
+            values.getCustomConfigFile(), values.getCustomPropertyFile(),
+            values.getCustomClasspath(), values.getCustomProperties(), values.getIgnoredPathsPattern(), pattern);
         settings.setValues(values);
     }
 
