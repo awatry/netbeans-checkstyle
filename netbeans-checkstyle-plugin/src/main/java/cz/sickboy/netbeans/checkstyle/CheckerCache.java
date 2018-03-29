@@ -74,7 +74,7 @@ public final class CheckerCache {
         // classloader to load checks
         freshChecker.setModuleClassLoader(configuration.getCheckstyleClassLoader());
         // classloader to load classpath
-        freshChecker.setClassloader(classLoader);
+        freshChecker.setClassLoader(classLoader);
 
         freshChecker.configure(configuration.getCheckstyleConfiguration());
 

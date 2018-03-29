@@ -23,13 +23,13 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import cz.sickboy.netbeans.checkstyle.editor.CheckstyleTask;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -46,12 +46,12 @@ public class CancellableChecker extends Checker {
         private static final long serialVersionUID = 1L;
 
         @Override
-        public boolean add (LocalizedMessage e) {
+        public boolean add(LocalizedMessage e) {
             throw new UnsupportedOperationException("Read only set");
         }
 
         @Override
-        public boolean addAll (Collection<? extends LocalizedMessage> c) {
+        public boolean addAll(Collection<? extends LocalizedMessage> c) {
             throw new UnsupportedOperationException("Read only set");
         }
     };
@@ -64,7 +64,7 @@ public class CancellableChecker extends Checker {
      * @param hook the task that will be consulted for the cancellation
      * @throws CheckstyleException if any problem with initialization occurs
      */
-    public CancellableChecker (CancellationHook hook) throws CheckstyleException {
+    public CancellableChecker(CancellationHook hook) throws CheckstyleException {
         this.hook = hook;
     }
 
@@ -72,7 +72,7 @@ public class CancellableChecker extends Checker {
      * {@inheritDoc}
      */
     @Override
-    public void addFileSetCheck (FileSetCheck fileSetCheck) {
+    public void addFileSetCheck(FileSetCheck fileSetCheck) {
         super.addFileSetCheck(new CancellableFileSetCheck(fileSetCheck, hook));
     }
 
@@ -82,7 +82,7 @@ public class CancellableChecker extends Checker {
      * @param file file to check
      * @see Checker#process(File[])
      */
-    public void process (File file) {
+    public void process(File file) throws CheckstyleException {
         process(Collections.singletonList(file));
     }
 
@@ -96,7 +96,7 @@ public class CancellableChecker extends Checker {
          *
          * @return Whether the check has been canceled.
          */
-        boolean isCanceled ();
+        boolean isCanceled();
 
     }
 
@@ -109,51 +109,51 @@ public class CancellableChecker extends Checker {
 
         private final CancellationHook hook;
 
-        public CancellableFileSetCheck (FileSetCheck check, CancellationHook hook) {
+        public CancellableFileSetCheck(FileSetCheck check, CancellationHook hook) {
             this.check = check;
             this.hook = hook;
         }
 
         @Override
-        public void contextualize (Context context) throws CheckstyleException {
+        public void contextualize(Context context) throws CheckstyleException {
             check.contextualize(context);
         }
 
         @Override
-        public void configure (Configuration configuration) throws CheckstyleException {
+        public void configure(Configuration configuration) throws CheckstyleException {
             check.configure(configuration);
         }
 
         @Override
-        public void setMessageDispatcher (MessageDispatcher dispatcher) {
+        public void setMessageDispatcher(MessageDispatcher dispatcher) {
             check.setMessageDispatcher(dispatcher);
         }
 
         @Override
-        public SortedSet<LocalizedMessage> process (File file, List<String> lines) {
+        public SortedSet<LocalizedMessage> process(File file, FileText fileText) throws CheckstyleException {
             if (hook.isCanceled()) {
                 return EMPTY_SET;
             }
-            return check.process(file, lines);
+            return check.process(file, fileText);
         }
 
         @Override
-        public void init () {
+        public void init() {
             check.init();
         }
 
         @Override
-        public void finishProcessing () {
+        public void finishProcessing() {
             check.finishProcessing();
         }
 
         @Override
-        public void destroy () {
+        public void destroy() {
             check.destroy();
         }
 
         @Override
-        public void beginProcessing (String charset) {
+        public void beginProcessing(String charset) {
             check.beginProcessing(charset);
         }
     }
