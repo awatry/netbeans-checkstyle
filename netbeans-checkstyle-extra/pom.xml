@@ -3,12 +3,11 @@
     <parent>
         <groupId>cz.sickboy</groupId>
         <artifactId>netbeans-checkstyle</artifactId>
-        <version>4.1.0</version>
+        <version>4.2.0</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>netbeans-checkstyle-extra</artifactId>
     <packaging>jar</packaging>
-    <version>4.1.0</version>
     <name>netbeans-checkstyle-extra</name>
     <url>http://www.sickboy.cz/checkstyle</url>
     <description>Checkstyle Beans Extra is small set of useful NetBeans related checks.</description>
@@ -38,14 +37,14 @@
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>6.15</version>
+            <version>${checkstyle.version}</version>
         </dependency>
         
         <dependency>
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
             <type>jar</type>
-            <version>18.0</version>
+            <version>23.6-jre</version>
         </dependency> 
         
         <dependency>

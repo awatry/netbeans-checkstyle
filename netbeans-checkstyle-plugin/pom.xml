@@ -3,12 +3,11 @@
     <parent>
         <groupId>cz.sickboy</groupId>
         <artifactId>netbeans-checkstyle</artifactId>
-        <version>4.1.0</version>
+        <version>4.2.0</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>netbeans-checkstyle-plugin</artifactId>
     <packaging>nbm</packaging>
-    <version>4.1.0</version>
     <name>netbeans-checkstyle-plugin</name>
     <url>http://www.sickboy.cz/checkstyle</url>
     <description>Checkstyle Beans Plugin contains the real implemetation of the plugin.</description>
@@ -47,14 +46,14 @@
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>6.7</version>
+            <version>${checkstyle.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>cz.sickboy</groupId>
             <artifactId>netbeans-checkstyle-library</artifactId>
-            <version>4.6.15</version>
+            <version>${checkstyle.version}</version>
         </dependency>
 
         <dependency>
