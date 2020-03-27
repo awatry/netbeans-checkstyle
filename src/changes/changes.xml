@@ -7,7 +7,7 @@
     <body>
         <release version="5.0.0" date="2020-03-27" description="Release 5.0.0">
             <action dev="awatry" type="update">
-                Checkstyle library updated to 8.14.
+                Checkstyle library updated to 8.29.
             </action>
             <action dev="awatry" type="update">
                 Updated to build against Netbeans 8.x and newer.

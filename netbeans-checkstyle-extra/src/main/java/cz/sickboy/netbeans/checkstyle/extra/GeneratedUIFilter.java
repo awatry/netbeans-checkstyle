@@ -115,7 +115,7 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
 
     private void tagComments() {
         sectionTags.clear();
-        Collection comments = getFileContents().getCppComments().values();
+        Collection comments = getFileContents().getSingleLineComments().values();
 
         for (Iterator iter = comments.iterator(); iter.hasNext();) {
             TextBlock comment = (TextBlock) iter.next();

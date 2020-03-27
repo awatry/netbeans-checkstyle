@@ -19,6 +19,7 @@
 package cz.sickboy.netbeans.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.beans.PropertyChangeEvent;
@@ -172,7 +173,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
 
         if (configurationFile != null) {
             return com.puppycrawl.tools.checkstyle.ConfigurationLoader.loadConfiguration(
-                configurationFile, new PropertiesExpander(properties), false);
+                configurationFile, new PropertiesExpander(properties), IgnoredModulesOptions.OMIT);
         }
 
         InputStream is = getClass().getClassLoader()
@@ -180,7 +181,8 @@ public final class ConfigurationLoader implements PropertyChangeListener {
 
         try {
             return com.puppycrawl.tools.checkstyle.ConfigurationLoader.loadConfiguration(
-                new InputSource(is), new PropertiesExpander(System.getProperties()), false);
+                new InputSource(is), new PropertiesExpander(System.getProperties()),
+                IgnoredModulesOptions.OMIT);
         } finally {
             try {
                 is.close();
