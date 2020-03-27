@@ -36,8 +36,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>6.7</version>
+            <version>8.14</version>
             <scope>provided</scope>
         </dependency>
 
@@ -60,82 +60,82 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-java-source</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-options-api</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-filesystems</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-loaders</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-nodes</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency> 
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-text</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-util</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>        
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-modules</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>        
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-spi-tasklist</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency> 
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-explorer</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency> 
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-execution</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-java</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-java-classpath</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-awt</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-windows</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-dialogs</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
         </dependency>
 
         <dependency>
@@ -147,7 +147,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-masterfs</artifactId>
-            <version>RELEASE70</version>
+            <version>RELEASE80</version>
             <scope>test</scope>
         </dependency>
         <dependency>

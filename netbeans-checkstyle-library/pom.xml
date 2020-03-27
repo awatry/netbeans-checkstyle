@@ -59,7 +59,7 @@
         <dependency>
             <artifactId>checkstyle</artifactId>
             <groupId>com.puppycrawl.tools</groupId>
-            <version>6.15</version>
+            <version>8.14</version>
         </dependency>
         <dependency>
             <artifactId>commons-beanutils</artifactId>

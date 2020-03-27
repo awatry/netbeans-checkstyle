@@ -156,7 +156,7 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
                             // classloader to load classpath
                             ClassPath path = ClassPath.getClassPath(fileObject, ClassPath.EXECUTE);
                             if (path != null) {
-                                checker.setClassloader(path.getClassLoader(true));
+                                checker.setClassLoader(path.getClassLoader(true));
                             }
                             checker.configure(config.getCheckstyleConfiguration());
                             checker.addListener(listener);

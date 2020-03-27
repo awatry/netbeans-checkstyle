@@ -20,10 +20,10 @@ package cz.sickboy.netbeans.checkstyle.extra;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,7 +80,7 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
             return true; // special event
         }
 
-        FileContents currentContents = FileContentsHolder.getContents();
+        FileContents currentContents = fileContentsReference.get();
         if (currentContents == null) {
             return true;
         }
@@ -147,6 +147,10 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void finishLocalSetup () throws CheckstyleException {
     }
 
     private static class SectionTag implements Comparable<SectionTag> {

@@ -23,13 +23,13 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import cz.sickboy.netbeans.checkstyle.editor.CheckstyleTask;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -81,8 +81,9 @@ public class CancellableChecker extends Checker {
      *
      * @param file file to check
      * @see Checker#process(File[])
+     * @throws CheckstyleException if the file has errors
      */
-    public void process (File file) {
+    public void process (File file) throws CheckstyleException {
         process(Collections.singletonList(file));
     }
 
@@ -130,7 +131,7 @@ public class CancellableChecker extends Checker {
         }
 
         @Override
-        public SortedSet<LocalizedMessage> process (File file, List<String> lines) {
+        public SortedSet<LocalizedMessage> process (File file, FileText lines) throws CheckstyleException {
             if (hook.isCanceled()) {
                 return EMPTY_SET;
             }
