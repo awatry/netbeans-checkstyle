@@ -3,7 +3,7 @@
     <parent>
         <groupId>cz.sickboy</groupId>
         <artifactId>netbeans-checkstyle</artifactId>
-        <version>4.1.1-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>netbeans-checkstyle-extra</artifactId>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>8.14</version>
+            <version>${checkstyle.version}</version>
         </dependency>
         
         <dependency>

@@ -5,6 +5,17 @@
         <author email="hejlp@seznam.cz">Petr Hejl</author> 
     </properties>
     <body>
+        <release version="5.0.0" date="2020-03-27" description="Release 5.0.0">
+            <action dev="awatry" type="update">
+                Checkstyle library updated to 8.14.
+            </action>
+            <action dev="awatry" type="update">
+                Updated to build against Netbeans 8.x and newer.
+            </action>
+            <action dev="awatry" type="update">
+                Updated to JDK8 as a minimum.
+            </action>
+        </release>
         <release version="4.1.0" date="2016-02-09" description="Release 4.1.0">
             <action dev="sickboy" type="update">
                 Checkstyle library updated to 6.15.
