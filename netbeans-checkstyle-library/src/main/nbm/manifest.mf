@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 OpenIDE-Module: cz.sickboy.netbeans.libs.checkstyle/4
 OpenIDE-Module-Localizing-Bundle: cz/sickboy/netbeans/libs/checkstyle/Bundle.properties
-OpenIDE-Module-Specification-Version: 4.6.15
+OpenIDE-Module-Specification-Version: 5.0.0
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
 OpenIDE-Module-Public-Packages: com.puppycrawl.tools.checkstyle.*,
  com.puppycrawl.tools.checkstyle.api.*,

@@ -3,7 +3,7 @@ OpenIDE-Module: cz.sickboy.netbeans.checkstyle/4
 OpenIDE-Module-Install: cz/sickboy/netbeans/checkstyle/CheckstyleModule.class
 OpenIDE-Module-Layer: cz/sickboy/netbeans/checkstyle/resources/layer.xml
 OpenIDE-Module-Localizing-Bundle: cz/sickboy/netbeans/checkstyle/resources/Bundle.properties
-OpenIDE-Module-Specification-Version: 4.1.0
+OpenIDE-Module-Specification-Version: 5.0.0
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Java-Dependencies: Java > 1.7
