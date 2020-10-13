@@ -19,7 +19,13 @@
                 Update commons-collections to 3.2.2
             </action>
             <action dev="awatry" type="update">
-
+                Update guava to 29.0-jre
+            </action>
+            <action dev="awatry" type="update">
+                Update commons-lang3 to 3.10
+            </action>
+            <action dev="awatry" type="update">
+                Update commons-logging to 1.2
             </action>
         </release>
         <release version="5.0.0" date="2020-03-27" description="Release 5.0.0">

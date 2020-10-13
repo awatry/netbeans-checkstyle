@@ -44,8 +44,8 @@
             <artifactId>guava</artifactId>
             <groupId>com.google.guava</groupId>
             <type>jar</type>
-            <version>18.0</version>
-        </dependency> 
+            <version>29.0-jre</version>
+        </dependency>
         
         <dependency>
             <groupId>junit</groupId>
