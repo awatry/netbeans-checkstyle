@@ -1,5 +1,5 @@
 In order to build Checkstyle Beans from sources you have to do
-the following steps. As a prerequisite you also need JDK 7 or
+the following steps. As a prerequisite you also need JDK 8 or
 newer and Maven 3.
 
 0) Build the netbeans-checkstyle-[plugin|library|extra]
