@@ -40,7 +40,6 @@ import java.util.regex.Pattern;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Position;
 import javax.swing.text.StyledDocument;
-import org.netbeans.api.java.classpath.ClassPath;
 import org.netbeans.api.java.source.CancellableTask;
 import org.netbeans.api.java.source.CompilationInfo;
 import org.openide.cookies.EditorCookie;
@@ -154,10 +153,6 @@ public class CheckstyleTask implements CancellableTask<CompilationInfo>, Cancell
                             // classloader to load checks
                             checker.setModuleClassLoader(config.getCheckstyleClassLoader());
                             // classloader to load classpath
-                            ClassPath path = ClassPath.getClassPath(fileObject, ClassPath.EXECUTE);
-                            if (path != null) {
-                                checker.setClassLoader(path.getClassLoader(true));
-                            }
                             checker.configure(config.getCheckstyleConfiguration());
                             checker.addListener(listener);
 
