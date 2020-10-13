@@ -5,6 +5,23 @@
         <author email="hejlp@seznam.cz">Petr Hejl</author> 
     </properties>
     <body>
+        <release version="5.1.0" date="2020-10-13" description="Release 5.1.0">
+            <action dev="awatry" type="update">
+                Checkstyle library updated to 8.36.2
+            </action>
+            <action dev="awatry" type="update">
+                Bump JUnit from 3.8.1 to 4.13.1
+            </action>
+            <action dev="awatry" type="update">
+                Update commons-beanutils to 1.9.4
+            </action>
+            <action dev="awatry" type="update">
+                Update commons-collections to 3.2.2
+            </action>
+            <action dev="awatry" type="update">
+
+            </action>
+        </release>
         <release version="5.0.0" date="2020-03-27" description="Release 5.0.0">
             <action dev="awatry" type="update">
                 Checkstyle library updated to 8.29.
