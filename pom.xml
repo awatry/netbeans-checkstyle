@@ -172,8 +172,9 @@
     <repositories>
         <repository>
             <id>netbeans</id>
-            <name>NetBeans artifacts</name>
-            <url>http://bits.netbeans.org/maven2/</url>
+            <!-- Once we move to Netbeans 9.0+ compatibility, we can use maven central -->
+            <name>Legacy Oracle NetBeans artifacts</name>
+            <url>http://netbeans.apidesign.org/maven2/</url>
         </repository>
     </repositories>
     
