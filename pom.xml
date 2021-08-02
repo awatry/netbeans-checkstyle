@@ -169,13 +169,5 @@
         <module>netbeans-checkstyle-plugin</module>
         <module>netbeans-checkstyle-extra</module>
     </modules>
-    <repositories>
-        <repository>
-            <id>netbeans</id>
-            <!-- Once we move to Netbeans 9.0+ compatibility, we can use maven central -->
-            <name>Legacy Oracle NetBeans artifacts</name>
-            <url>http://netbeans.apidesign.org/maven2/</url>
-        </repository>
-    </repositories>
     
 </project>
