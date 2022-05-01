@@ -115,5 +115,15 @@ public class ConfigurationTest extends TestCase {
         public ImmutableMap<String, String> getMessages () {
             return ImmutableMap.of();
         }
+
+        @Override
+        public String[] getPropertyNames() {
+            return null;
+        }
+
+        @Override
+        public String getProperty(String name) {
+            return null;
+        }
     }
 }

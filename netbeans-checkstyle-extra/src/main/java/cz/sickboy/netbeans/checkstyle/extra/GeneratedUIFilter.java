@@ -76,7 +76,7 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
     }
 
     public boolean accept(AuditEvent aEvent) {
-        if (aEvent.getLocalizedMessage() == null) {
+        if (aEvent.getMessage() == null) {
             return true; // special event
         }
 

@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import cz.sickboy.netbeans.checkstyle.editor.CheckstyleTask;
 import java.io.File;
 import java.util.Collection;
@@ -42,16 +42,16 @@ import java.util.TreeSet;
  */
 public class CancellableChecker extends Checker {
 
-    private static final SortedSet<LocalizedMessage> EMPTY_SET = new TreeSet<LocalizedMessage>() {
+    private static final SortedSet<Violation> EMPTY_SET = new TreeSet<Violation>() {
         private static final long serialVersionUID = 1L;
 
         @Override
-        public boolean add (LocalizedMessage e) {
+        public boolean add (Violation e) {
             throw new UnsupportedOperationException("Read only set");
         }
 
         @Override
-        public boolean addAll (Collection<? extends LocalizedMessage> c) {
+        public boolean addAll (Collection<? extends Violation> c) {
             throw new UnsupportedOperationException("Read only set");
         }
     };
@@ -131,7 +131,7 @@ public class CancellableChecker extends Checker {
         }
 
         @Override
-        public SortedSet<LocalizedMessage> process (File file, FileText lines) throws CheckstyleException {
+        public SortedSet<Violation> process (File file, FileText lines) throws CheckstyleException {
             if (hook.isCanceled()) {
                 return EMPTY_SET;
             }
