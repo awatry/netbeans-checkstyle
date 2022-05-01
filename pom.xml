@@ -152,7 +152,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <checkstyle.version>8.36.2</checkstyle.version>
+        <checkstyle.version>9.3</checkstyle.version>
     </properties>
 
     <scm>
