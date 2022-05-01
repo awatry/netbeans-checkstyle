@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cz.sickboy</groupId>
     <artifactId>netbeans-checkstyle</artifactId>
@@ -13,7 +13,7 @@
         It works inside the editor, displaying the results as soon as the edited
         file is saved.
     </description>
-    
+
     <licenses>
         <license>
             <name>GNU LGPL, Version 2.1</name>
@@ -43,8 +43,16 @@
             </roles>
             <timezone>-6</timezone>
         </developer>
+        <developer>
+            <id>jonathanpoulin9</id>
+            <name>Jonathan Poulin</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
     </developers>
-    
+
     <build>
         <extensions>
             <extension>
@@ -85,9 +93,9 @@
                     <fileName>autoupdate-3.xml</fileName>
                     <nbmBuildDir>${project.reporting.outputDirectory}/autoupdate</nbmBuildDir>
                     <distBase>http://www.sickboy.cz/checkstyle/autoupdate</distBase>
-                </configuration>                
+                </configuration>
             </plugin>
-            
+
             <plugin>
                 <inherited>false</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -102,7 +110,6 @@
                             <reports>
                                 <report>project-team</report>
                                 <report>license</report>
-                                <!-- <report>scm</report> -->
                             </reports>
                         </plugin>
                         <plugin>
@@ -163,11 +170,11 @@
             <url>scpexe://sickboy.cz/home/sickboy/www/checkstyle</url>
         </site>
     </distributionManagement>
-    
+
     <modules>
         <module>netbeans-checkstyle-library</module>
         <module>netbeans-checkstyle-plugin</module>
         <module>netbeans-checkstyle-extra</module>
     </modules>
-    
+
 </project>
