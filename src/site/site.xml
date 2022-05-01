@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Checkstyle Beans">
-    
+
     <bannerLeft>
         <name>Checkstyle Beans</name>
         <src>checkstyle.gif</src>
     </bannerLeft>
-    
+
     <body>
-        
+
         <menu name="Quick Links">
             <item name="About" href="index.html"/>
             <item name="Changes Report" href="changes-report.html"/>
             <item name="Download" href="download.html"/>
             <item name="Screenshots" href="screenshots.html"/>
             <item name="Extra Code" href="extra.html"/>
-            <item name="Project License" href="license.html"/>
-            <item name="Project Team" href="team-list.html"/>
-            <!-- <item name="Source Repository" href="source-repository.html"/> -->
+            <item name="Project License" href="licenses.html"/>
+            <item name="Project Team" href="team.html"/>
         </menu>
-        
+
     </body>
-    
+
 </project>
