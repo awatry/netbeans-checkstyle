@@ -2,9 +2,20 @@
 <document>
     <properties>
         <title>Changes Report</title>
-        <author email="hejlp@seznam.cz">Petr Hejl</author> 
+        <author email="hejlp@seznam.cz">Petr Hejl</author>
     </properties>
     <body>
+        <release version="5.2.0" date="2022-05-01" description="Release 5.2.0">
+            <action dev="jonathanpoulin9" type="fix">
+                Fix the "Checkstyle configuration error" with the default configuration.
+            </action>
+            <action dev="jonathanpoulin9" type="update">
+                Update to NetBeans 13.0
+            </action>
+            <action dev="jonathanpoulin9" type="update">
+                Update to Checkstyle 9.3
+            </action>
+        </release>
         <release version="5.1.0" date="2020-10-13" description="Release 5.1.0">
             <action dev="awatry" type="update">
                 Checkstyle library updated to 8.36.2
@@ -126,7 +137,6 @@
                 Checkstyle now properly recognize compile classpath.
             </action>
         </release>
-
         <release version="1.3.0" date="2008-09-05" description="Release 1.3.0">
             <action dev="sickboy" type="add">
                 Added possibility to configure property file and/or properties
@@ -135,15 +145,15 @@
             <action dev="sickboy" type="add">
                 Filter options button in Task List now opens the correct tab
                 (NetBeans 6.5 or higher).
-            </action>            
+            </action>
             <action dev="sickboy" type="fix">
                 Fixed deadlock on configuration change.
             </action>
             <action dev="sickboy" type="fix">
                 Custom classpath is not considered anymore when custom config
                 is disabled.
-            </action>            
-        </release>        
+            </action>
+        </release>
         <release version="1.2.0" date="2008-04-25" description="Release 1.2.0">
             <action dev="sickboy" type="add">
                 Added possibility to configure custom classpath, so you can use
@@ -151,19 +161,17 @@
             </action>
             <action dev="sickboy" type="add">
                 Separate package with extra checks and filters introduced.
-            </action>            
+            </action>
             <action dev="sickboy" type="remove">
                 Removed filter for GUI builder generated code. It can be used
                 in clean way with custom classpath.
             </action>
         </release>
-        
         <release version="1.1.1" date="2008-01-09" description="Release 1.1.1">
             <action dev="sickboy" type="update">
                 Checkstyle library updated to version 4.4.
-            </action>             
+            </action>
         </release>
-        
         <release version="1.1.0" date="2007-09-14" description="Release 1.1.0">
             <action dev="sickboy" type="add">
                 Task List integration.
@@ -177,9 +185,8 @@
             </action>
             <action dev="sickboy" type="update">
                 Increased priority of source task by one level.
-            </action>             
+            </action>
         </release>
-
         <release version="1.0.0" date="2007-08-23" description="Release 1.0.0">
             <action dev="sickboy" type="add">
                 First release providing source code editor annotations.
