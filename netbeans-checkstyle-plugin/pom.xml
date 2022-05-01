@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>cz.sickboy</groupId>
         <artifactId>netbeans-checkstyle</artifactId>
         <version>5.1.0-SNAPSHOT</version>
-    </parent>    
+    </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>netbeans-checkstyle-plugin</artifactId>
     <packaging>nbm</packaging>
     <name>netbeans-checkstyle-plugin</name>
     <url>http://www.sickboy.cz/checkstyle</url>
-    <description>Checkstyle Beans Plugin contains the real implemetation of the plugin.</description>
+    <description>Checkstyle Beans Plugin contains the real implementation of the plugin.</description>
 
     <licenses>
         <license>
@@ -29,7 +29,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <descriptor>src/main/nbm/module.xml</descriptor>
-                </configuration>                
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -40,8 +40,8 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build> 
-    
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
@@ -59,82 +59,87 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-java-source</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-java-source-base</artifactId>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-options-api</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-filesystems</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-loaders</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-nodes</artifactId>
-            <version>RELEASE90</version>
-        </dependency> 
+            <version>RELEASE130</version>
+        </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-text</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-util</artifactId>
-            <version>RELEASE90</version>
-        </dependency>        
+            <version>RELEASE130</version>
+        </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-modules</artifactId>
-            <version>RELEASE90</version>
-        </dependency>        
+            <version>RELEASE130</version>
+        </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-spi-tasklist</artifactId>
-            <version>RELEASE90</version>
-        </dependency> 
+            <version>RELEASE130</version>
+        </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-explorer</artifactId>
-            <version>RELEASE90</version>
-        </dependency> 
+            <version>RELEASE130</version>
+        </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-execution</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-java</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-java-classpath</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-awt</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-windows</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-dialogs</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
         </dependency>
 
         <dependency>
@@ -146,7 +151,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-masterfs</artifactId>
-            <version>RELEASE90</version>
+            <version>RELEASE130</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -155,7 +160,7 @@
             <version>1.0.3</version>
         </dependency>
     </dependencies>
-    
+
     <distributionManagement>
         <repository>
             <id>repository</id>
@@ -166,5 +171,5 @@
             <!-- we use dummy because we don't want the site deployed -->
             <url>file://${java.io.tmpdir}/checkstyle/netbeans-checkstyle-plugin</url>
         </site>
-    </distributionManagement>    
+    </distributionManagement>
 </project>
