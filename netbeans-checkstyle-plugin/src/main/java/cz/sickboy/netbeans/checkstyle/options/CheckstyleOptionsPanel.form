@@ -21,17 +21,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                       <Component id="classpathPanel" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="severityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="configFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="propertyFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="propertiesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ignoredPathsLabel" max="32767" attributes="0"/>
-                          <Component id="checkedPathsLabel" pref="0" max="32767" attributes="0"/>
+                          <Component id="ignoredPathsLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkedPathsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -39,7 +39,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="severityComboBox" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="267" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="257" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="configFileLocationField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="propertyFileLocationField" alignment="0" max="32767" attributes="0"/>
@@ -95,7 +95,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="classpathPanel" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="classpathPanel" min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="classpathLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
