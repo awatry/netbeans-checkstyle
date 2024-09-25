@@ -58,7 +58,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh-external</artifactId>
-                <version>2.4</version>
+                <version>3.5.3</version>
             </extension>
         </extensions>
 
@@ -66,7 +66,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4.1</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>enforce-java</id>
@@ -99,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.7</version>
+                <version>3.7.1</version>
             </plugin>
 
             <plugin>
