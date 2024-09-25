@@ -1,4 +1,4 @@
-#Building netbeans-checkstyle
+# Building netbeans-checkstyle
 
 In order to build Checkstyle Beans from sources you have to do
 the following steps. As a prerequisite you also need JDK 8 or
