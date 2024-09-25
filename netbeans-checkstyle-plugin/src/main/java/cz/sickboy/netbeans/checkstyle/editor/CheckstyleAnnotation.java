@@ -36,8 +36,6 @@ public final class CheckstyleAnnotation extends Annotation {
 
     private final String shortDescription;
 
-    private final SeverityLevel level;
-
     public CheckstyleAnnotation (StyledDocument document, Position position,
         String shortDescription, SeverityLevel level)
     {
@@ -45,7 +43,6 @@ public final class CheckstyleAnnotation extends Annotation {
         this.document = document;
         this.position = position;
         this.shortDescription = shortDescription;
-        this.level = level;
     }
 
     @Override

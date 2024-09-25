@@ -131,7 +131,7 @@ public final class ConfigurationLoader implements PropertyChangeListener {
 
             Properties fresh = new Properties();
             // doing this because of https://github.com/checkstyle/checkstyle/commit/7d513f0
-            for (Enumeration e = properties.propertyNames(); e.hasMoreElements();) {
+            for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
                 String name = (String) e.nextElement();
                 fresh.put(name, properties.getProperty(name));
             }

@@ -105,7 +105,7 @@ public class CheckstyleSettingsTest extends TestCase {
     }
 
     public void testCustomClasspath () {
-        List<File> classpath = new ArrayList();
+        List<File> classpath = new ArrayList<>();
         Collections.addAll(classpath, new File("file_1"), new File("file_2"));
 
         CheckstyleSettings settings = CheckstyleSettings.getDefault();
@@ -273,7 +273,7 @@ public class CheckstyleSettingsTest extends TestCase {
         settings.setValues(values);
     }
 
-    private static void assertEquals (List expected, List value) {
+    private static void assertEquals (List<?> expected, List<?> value) {
         assertEquals(expected.size(), value.size());
 
         for (int i = 0; i < expected.size(); i++) {
@@ -317,12 +317,12 @@ public class CheckstyleSettingsTest extends TestCase {
             assertEquals(propertyName, evt.getPropertyName());
 
             if (oldValue instanceof List && evt.getOldValue() instanceof List) {
-                assertEquals((List) oldValue, (List) evt.getOldValue());
+                assertEquals((List<?>) oldValue, (List<?>) evt.getOldValue());
             } else {
                 assertEquals(oldValue, evt.getOldValue());
             }
             if (newValue instanceof List && evt.getNewValue() instanceof List) {
-                assertEquals((List) newValue, (List) evt.getNewValue());
+                assertEquals((List<?>) newValue, (List<?>) evt.getNewValue());
             } else {
                 assertEquals(newValue, evt.getNewValue());
             }

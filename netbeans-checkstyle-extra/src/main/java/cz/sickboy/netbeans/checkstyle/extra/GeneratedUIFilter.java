@@ -115,9 +115,9 @@ public class GeneratedUIFilter extends AutomaticBean implements TreeWalkerFilter
 
     private void tagComments() {
         sectionTags.clear();
-        Collection comments = getFileContents().getSingleLineComments().values();
+        Collection<TextBlock> comments = getFileContents().getSingleLineComments().values();
 
-        for (Iterator iter = comments.iterator(); iter.hasNext();) {
+        for (Iterator<TextBlock> iter = comments.iterator(); iter.hasNext();) {
             TextBlock comment = (TextBlock) iter.next();
             String[] text = comment.getText();
             for (int i = 0, startLineNo = comment.getStartLineNo(); i < text.length; i++) {

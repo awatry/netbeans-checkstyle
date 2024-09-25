@@ -21,6 +21,7 @@ package cz.sickboy.netbeans.checkstyle.editor;
 import java.io.File;
 import junit.framework.TestCase;
 import org.netbeans.api.java.source.CancellableTask;
+import org.netbeans.api.java.source.CompilationInfo;
 import org.openide.filesystems.FileUtil;
 
 /**
@@ -36,11 +37,11 @@ public class CheckstyleTaskFactoryTest extends TestCase {
     public void testFactory () {
         CheckstyleTaskFactory factory = new CheckstyleTaskFactory();
 
-        CancellableTask task1 = factory.createTask(FileUtil.toFileObject(
+        CancellableTask<CompilationInfo> task1 = factory.createTask(FileUtil.toFileObject(
             FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
         assertNotNull(task1);
 
-        CancellableTask task2 = factory.createTask(FileUtil.toFileObject(
+        CancellableTask<CompilationInfo> task2 = factory.createTask(FileUtil.toFileObject(
             FileUtil.normalizeFile(new File(System.getProperty("java.io.tmpdir")))));
         assertNotNull(task2);
 

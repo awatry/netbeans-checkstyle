@@ -264,7 +264,7 @@ public final class CheckstyleSettings {
 
             StringBuilder builder = new StringBuilder();
 
-            for (Enumeration e = copied.propertyNames(); e.hasMoreElements();) {
+            for (Enumeration<?> e = copied.propertyNames(); e.hasMoreElements();) {
                 String propKey = e.nextElement().toString();
                 String propValue = copied.getProperty(propKey);
                 if (propValue != null) {
