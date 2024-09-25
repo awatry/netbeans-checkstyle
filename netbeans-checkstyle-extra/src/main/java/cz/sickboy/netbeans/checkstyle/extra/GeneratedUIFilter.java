@@ -18,11 +18,11 @@
  */
 package cz.sickboy.netbeans.checkstyle.extra;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
  *
  * @author Petr.Hejl
  */
-public class GeneratedUIFilter extends AutomaticBean implements Filter {
+public class GeneratedUIFilter extends AutomaticBean implements TreeWalkerFilter {
 
     private static final Pattern BLOCK_ON_PATTERN =
             Pattern.compile("GEN-END\\:"); // NOI18N
@@ -75,12 +75,12 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
         fileContentsReference = new WeakReference<FileContents>(aFileContents);
     }
 
-    public boolean accept(AuditEvent aEvent) {
+    public boolean accept(TreeWalkerAuditEvent aEvent) {
         if (aEvent.getMessage() == null) {
             return true; // special event
         }
 
-        FileContents currentContents = fileContentsReference.get();
+        FileContents currentContents = aEvent.getFileContents();
         if (currentContents == null) {
             return true;
         }
@@ -101,7 +101,7 @@ public class GeneratedUIFilter extends AutomaticBean implements Filter {
         return true;
     }
 
-    private SectionTag findPreceedingTag(AuditEvent aEvent) {
+    private SectionTag findPreceedingTag(TreeWalkerAuditEvent aEvent) {
         SectionTag result = null;
         for (SectionTag tag : sectionTags) {
             if ((tag.getLine() > aEvent.getLine())

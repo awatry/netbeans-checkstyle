@@ -155,6 +155,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.netbeans.modules</groupId>
+            <artifactId>org-netbeans-core-startup-base</artifactId>
+            <version>RELEASE130</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.swinglabs</groupId>
             <artifactId>swing-layout</artifactId>
             <version>1.0.3</version>
