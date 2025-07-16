@@ -75,7 +75,7 @@
             <artifactId>commons-lang3</artifactId>
             <groupId>org.apache.commons</groupId>
             <type>jar</type>
-            <version>3.17.0</version>
+            <version>3.18.0</version>
         </dependency>
         <dependency>
             <artifactId>commons-logging</artifactId>
